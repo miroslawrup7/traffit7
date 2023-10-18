@@ -985,7 +985,7 @@ main {
     }
 }
 
-@media (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
     main {
         max-width: 750px;
 
@@ -1090,7 +1090,7 @@ main {
     }
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     main {
         max-width: 375px;
 
@@ -1195,7 +1195,7 @@ main {
     }
 }
 
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
     main {
         .filters-container {
             .wrapper {
