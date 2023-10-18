@@ -1,22 +1,22 @@
 @font-face {
-    font-family: 'Poppins300';
+    font-family: "Poppins300";
     src: url(../img/fonts/Poppins-Light.ttf);
 }
 
 @font-face {
-    font-family: 'Poppins600';
+    font-family: "Poppins600";
     src: url(../img/fonts/Poppins-SemiBold.ttf);
 }
 
-$main-color: #FE7320;
+$main-color: #fe7320;
 $main-color-light: #fe732038;
 $text-color: #666666;
-$background-color: #F1F1F1;
+$background-color: #f1f1f1;
 $scroll-color: #cecece8e;
-$scroll-color-hover: #CECECE;
+$scroll-color-hover: #cecece;
 $checkbox-empty-color: #cecece8e;
 $contrast-color: #1962b3;
-$unactive-color: #D3D3D3;
+$unactive-color: #d3d3d3;
 $text-light: #bebebe;
 $color-rec-1: #20abfe;
 $color-rec-2: #6bc424;
@@ -32,7 +32,7 @@ $color-rec-3: #fe7320;
     outline: 0;
     box-sizing: border-box;
     background-color: transparent;
-    font-family: 'Poppins300', Helvetica, Arial, Lucida, sans-serif;
+    font-family: "Poppins300", Helvetica, Arial, Lucida, sans-serif;
     font-size: 16px;
     color: $text-color;
 }
@@ -77,7 +77,7 @@ main {
         width: 100%;
         margin-top: 100px;
         margin-bottom: 36px;
-        font-family: 'Poppins600', Helvetica, Arial, Lucida, sans-serif;
+        font-family: "Poppins600", Helvetica, Arial, Lucida, sans-serif;
         font-size: 35px;
         color: $main-color;
         text-align: center;
@@ -188,7 +188,6 @@ main {
                     &.unactive {
                         display: none;
                     }
-
                 }
 
                 &.employment-form {
@@ -385,7 +384,7 @@ main {
                             &.expand {
                                 max-height: 400px;
                                 overflow-y: auto;
-                                animation: .3s delay-overflow;
+                                animation: 0.3s delay-overflow;
                             }
 
                             &::-webkit-scrollbar {
@@ -561,7 +560,7 @@ main {
                     justify-content: center;
                     background-color: $main-color;
                     color: white;
-                    font-family: 'Poppins600', Helvetica, Arial, Lucida, sans-serif;
+                    font-family: "Poppins600", Helvetica, Arial, Lucida, sans-serif;
                     font-size: 25px;
                     border-radius: 15px;
                     cursor: pointer;
@@ -627,7 +626,6 @@ main {
                 opacity: 0;
                 z-index: 20;
                 transition: opacity 0.1s ease-out;
-
             }
 
             .clear-btn {
@@ -694,7 +692,7 @@ main {
 
                 &::before,
                 &::after {
-                    content: '';
+                    content: "";
                     width: 10px;
                     height: 10px;
                     background: #bb1c4e;
@@ -716,7 +714,7 @@ main {
     }
 
     .result {
-        background-color: #FFFFFF;
+        background-color: #ffffff;
         margin: 20px 0;
         padding: 20px;
         border-radius: 15px;
@@ -971,7 +969,7 @@ main {
                 border: 1px solid $main-color;
 
                 option.placeholder {
-                    color: $unactive-color
+                    color: $unactive-color;
                 }
             }
 
@@ -997,14 +995,12 @@ main {
 
         .filters-container {
             .advanced-container {
-
                 &.showed {
                     height: fit-content;
                 }
             }
 
             .wrapper {
-
                 &.one {
                     width: 100%;
                     order: 1;
@@ -1044,11 +1040,9 @@ main {
                 &.five {
                     order: 3;
                     width: 100%;
-
                 }
 
                 .drop-down-container {
-
                     &.city {
                         width: 45%;
                         flex-grow: 1;
@@ -1059,8 +1053,6 @@ main {
                         width: 45%;
                         flex-grow: 1;
                     }
-
-
 
                     &.sector {
                         width: 45%;
@@ -1109,16 +1101,13 @@ main {
 
         .filters-container {
             .advanced-container {
-
                 &.showed {
                     height: fit-content;
                 }
             }
 
             .wrapper {
-
                 .arrow-down {
-
                     &.big {
                         height: 20px;
                         right: -26px;
@@ -1142,13 +1131,12 @@ main {
                 }
 
                 .drop-down-container {
-
                     &.city {
-                        width: 52%
+                        width: 52%;
                     }
 
                     &.distance {
-                        width: 32%
+                        width: 32%;
                     }
 
                     &.search-btn {
@@ -1157,7 +1145,7 @@ main {
                     }
 
                     &.remote {
-                        width: 100%
+                        width: 100%;
                     }
 
                     &.relocation {
@@ -1211,9 +1199,7 @@ main {
     main {
         .filters-container {
             .wrapper {
-
                 .drop-down-container {
-
                     &.city {
                         width: 100%;
                         z-index: 10;
