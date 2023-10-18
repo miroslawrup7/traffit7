@@ -242,7 +242,7 @@ main {
                     display: flex;
                     align-items: center;
 
-                    .checkbox {
+                    // .checkbox {
                         display: block;
                         position: relative;
                         height: 35px;
@@ -313,7 +313,7 @@ main {
                             border-width: 0 4px 4px 0;
                             transform: rotate(40deg);
                         }
-                    }
+                    // }
 
                     .label-text {
                         display: inline-block;
