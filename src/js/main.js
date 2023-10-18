@@ -8,9 +8,7 @@ const jobClearBtnLoc = jobLoc.querySelector(".clear-btn");
 const cityLoc = document.querySelector(".city");
 const cityListBtnLoc = document.querySelector(".city .arrow-down");
 const cityListTitleLoc = document.querySelector(".city .list-title");
-const citySelectedOptionsLoc = document.querySelector(
-    ".city .selected-options"
-);
+const citySelectedOptionsLoc = document.querySelector(".city .selected-options");
 const cityListLoc = document.querySelector(".city .list");
 
 const distanceLoc = document.querySelector(".distance");
@@ -21,41 +19,25 @@ const distanceListLoc = document.querySelector(".distance .list");
 const sectorLoc = document.querySelector(".sector");
 const sectorListBtnLoc = document.querySelector(".sector .arrow-down");
 const sectorListTitleLoc = document.querySelector(".sector .list-title");
-const sectorSelectedOptionsLoc = document.querySelector(
-    ".sector .selected-options"
-);
+const sectorSelectedOptionsLoc = document.querySelector(".sector .selected-options");
 const sectorListLoc = document.querySelector(".sector .list");
 
 const employmentFormLoc = document.querySelector(".employment-form");
-const employmentFormListBtnLoc = document.querySelector(
-    ".employment-form .arrow-down"
-);
-const employmentFormListTitleLoc = document.querySelector(
-    ".employment-form .list-title"
-);
-const employmentFormSelectedOptionsLoc = document.querySelector(
-    ".employment-form .selected-options"
-);
+const employmentFormListBtnLoc = document.querySelector(".employment-form .arrow-down");
+const employmentFormListTitleLoc = document.querySelector(".employment-form .list-title");
+const employmentFormSelectedOptionsLoc = document.querySelector(".employment-form .selected-options");
 const employmentFormListLoc = document.querySelector(".employment-form .list");
 
 const workingHoursLoc = document.querySelector(".working-hours");
-const workingHoursListBtnLoc = document.querySelector(
-    ".working-hours .arrow-down"
-);
-const workingHoursListTitleLoc = document.querySelector(
-    ".working-hours .list-title"
-);
-const workingHoursSelectedOptionsLoc = document.querySelector(
-    ".working-hours .selected-options"
-);
+const workingHoursListBtnLoc = document.querySelector(".working-hours .arrow-down");
+const workingHoursListTitleLoc = document.querySelector(".working-hours .list-title");
+const workingHoursSelectedOptionsLoc = document.querySelector(".working-hours .selected-options");
 const workingHoursListLoc = document.querySelector(".working-hours .list");
 
 const languageLoc = document.querySelector(".language");
 const languageListBtnLoc = document.querySelector(".language .arrow-down");
 const languageListTitleLoc = document.querySelector(".language .list-title");
-const languageSelectedOptionsLoc = document.querySelector(
-    ".language .selected-options"
-);
+const languageSelectedOptionsLoc = document.querySelector(".language .selected-options");
 const languageListLoc = document.querySelector(".language .list");
 
 const awardedResultsLoc = document.querySelector(".awarded");
@@ -84,9 +66,7 @@ const distanceTitleLoc = document.querySelector(".distance .list-title");
 const searchBtn = document.querySelector(".search-btn");
 
 const advancedSearchBar = document.querySelector(".wrapper.five");
-const advancedSearchBtn = document.querySelector(
-    ".advanced-search-btn .arrow-down"
-);
+const advancedSearchBtn = document.querySelector(".advanced-search-btn .arrow-down");
 const advancedContainer = document.querySelector(".advanced-container");
 
 jobLoc.addEventListener("click", (e) => {
@@ -123,21 +103,13 @@ const removePaddingBottomToFilterList = (filterList) => {
 const addPaddingBottomToFilterList = (filterList) => {
     if (filterList.closest(".element").style.paddingBottom === "") {
         filterList.closest(".element").style.paddingBottom = "15px";
-        filterList.closest(".element").style.boxShadow =
-            "0px 0px 3px rgba(0,0,0,0.1)";
+        filterList.closest(".element").style.boxShadow = "0px 0px 3px rgba(0,0,0,0.1)";
     } else {
         removePaddingBottomToFilterList(filterList);
     }
 };
 
-const dropDownListArray = [
-    cityLoc,
-    distanceLoc,
-    sectorLoc,
-    employmentFormLoc,
-    workingHoursLoc,
-    languageLoc,
-];
+const dropDownListArray = [cityLoc, distanceLoc, sectorLoc, employmentFormLoc, workingHoursLoc, languageLoc];
 
 dropDownListArray.forEach((elem) => {
     elem.querySelector(".list-title").addEventListener("click", () => {
@@ -182,13 +154,7 @@ distanceInputsLoc.forEach((elem) => {
 
 recordsOnPageLoc.value = recordsOnPage;
 
-const filterListLocArray = [
-    cityLoc,
-    sectorLoc,
-    employmentFormLoc,
-    workingHoursLoc,
-    languageLoc,
-];
+const filterListLocArray = [cityLoc, sectorLoc, employmentFormLoc, workingHoursLoc, languageLoc];
 let selectedOptionsInFilterArray = [[], [], [], [], [], []];
 
 const setClearBtn = () => {
@@ -234,20 +200,16 @@ setClearBtn();
 
 const actionAfterFilterInputChange = (e) => {
     const filterParentLoc = e.target.closest(".drop-down-container");
-    const filtersQuantityBtn =
-        filterParentLoc.querySelector(".filters-quantity");
+    const filtersQuantityBtn = filterParentLoc.querySelector(".filters-quantity");
     const filtersListTitleLoc = filterParentLoc.querySelector(".list-title");
-    const filtersSelectedOptionsLoc =
-        filterParentLoc.querySelector(".selected-options");
+    const filtersSelectedOptionsLoc = filterParentLoc.querySelector(".selected-options");
 
     const indexFilter = filterListLocArray.indexOf(filterParentLoc);
 
     if (e.target.checked) {
         selectedOptionsInFilterArray[indexFilter].push(e.target.value);
     } else {
-        const indexDeletedItem = selectedOptionsInFilterArray[
-            indexFilter
-        ].indexOf(e.target.value);
+        const indexDeletedItem = selectedOptionsInFilterArray[indexFilter].indexOf(e.target.value);
         selectedOptionsInFilterArray[indexFilter].splice(indexDeletedItem, 1);
     }
 
@@ -256,15 +218,13 @@ const actionAfterFilterInputChange = (e) => {
     if (selectedOptionsInFilterArray[indexFilter].length !== 0) {
         filtersListTitleLoc.classList.add("mini");
         filtersQuantityBtn.style.opacity = "1";
-        filtersQuantityBtn.innerText =
-            selectedOptionsInFilterArray[indexFilter].length;
+        filtersQuantityBtn.innerText = selectedOptionsInFilterArray[indexFilter].length;
     } else {
         filtersListTitleLoc.classList.remove("mini");
         filtersQuantityBtn.style.opacity = "0";
     }
 
-    filtersSelectedOptionsLoc.innerText =
-        selectedOptionsInFilterArray[indexFilter].join(", ");
+    filtersSelectedOptionsLoc.innerText = selectedOptionsInFilterArray[indexFilter].join(", ");
     searchBtn.click();
 };
 
@@ -316,33 +276,21 @@ const createRecordBoxes = (recordsArray, firstRecordNumber, recordsOnPage) => {
                         textColorClass = "wew-text";
                     }
                 } else {
-                    if (
-                        filterConfigData.recruitmentType_colorOnly.indexOf(
-                            "PT"
-                        ) !== -1
-                    ) {
+                    if (filterConfigData.recruitmentType_colorOnly.indexOf("PT") !== -1) {
                         if (recordsArray[i].recruitmentType === "PT") {
                             borderColorClass = "pt-border";
                             textColorClass = "pt-text";
                         }
                     }
 
-                    if (
-                        filterConfigData.recruitmentType_colorOnly.indexOf(
-                            "RS"
-                        ) !== -1
-                    ) {
+                    if (filterConfigData.recruitmentType_colorOnly.indexOf("RS") !== -1) {
                         if (recordsArray[i].recruitmentType === "RS") {
                             borderColorClass = "rs-border";
                             textColorClass = "rs-text";
                         }
                     }
 
-                    if (
-                        filterConfigData.recruitmentType_colorOnly.indexOf(
-                            "WEW"
-                        ) !== -1
-                    ) {
+                    if (filterConfigData.recruitmentType_colorOnly.indexOf("WEW") !== -1) {
                         if (recordsArray[i].recruitmentType === "WEW") {
                             borderColorClass = "wew-border";
                             textColorClass = "wew-text";
@@ -355,28 +303,19 @@ const createRecordBoxes = (recordsArray, firstRecordNumber, recordsOnPage) => {
 
             if (recordsArray[i].jobForm) {
                 recordsArray[i].jobForm.forEach(function (elem) {
-                    formaZatrudnienia =
-                        formaZatrudnienia + "<p>" + elem + "</p>";
+                    formaZatrudnienia = formaZatrudnienia + "<p>" + elem + "</p>";
                 });
             }
 
             resultsLoc.insertAdjacentHTML(
                 "beforeend",
-                `<a href="${
-                    recordsArray[i].url
-                }" target="_blank"><div class="result ${borderColorClass}">
+                `<a href="${recordsArray[i].url}" target="_blank"><div class="result ${borderColorClass}">
             <div class="top">
               
                     <div class="lang"><p>${recordsArray[i].lang}</p></div>
                     <div class="branche-name">
-                        <div class="branche">${
-                            recordsArray[i].branche
-                                ? recordsArray[i].branche
-                                : ""
-                        }</div>
-                        <div class="name ${textColorClass}">${
-                    recordsArray[i].name
-                }</div>
+                        <div class="branche">${recordsArray[i].branche ? recordsArray[i].branche : ""}</div>
+                        <div class="name ${textColorClass}">${recordsArray[i].name}</div>
                    
                 </div>
               
@@ -384,40 +323,13 @@ const createRecordBoxes = (recordsArray, firstRecordNumber, recordsOnPage) => {
 
             <div class="bottom">
                 <div class="city-container">
-                    <div class="city"><img src="./img/location_dot.svg">${
-                        recordsArray[i].city
-                    }</div>
+                    <div class="city"><img src="./img/location_dot.svg">${recordsArray[i].city}</div>
                     </div>
                     <div class="details-container">
-                    ${
-                        recordsArray[i].jobType
-                            ? "<div class='jobtype'>" +
-                              recordsArray[i].jobType +
-                              "</div>"
-                            : ""
-                    }
-                    ${
-                        recordsArray[i].visibleRate
-                            ? recordsArray[i].salaryFrom &&
-                              recordsArray[i].salaryTo
-                                ? "<div class='salary'>" +
-                                  recordsArray[i].salaryFrom +
-                                  " - " +
-                                  recordsArray[i].salaryTo +
-                                  "</div>"
-                                : ""
-                            : ""
-                    }
-                    ${
-                        recordsArray[i].remote
-                            ? "<div class='remote'>zdalna</div>"
-                            : ""
-                    }
-                    ${
-                        recordsArray[i].relocation
-                            ? "<div class='relocation'>relocation</div>"
-                            : ""
-                    }
+                    ${recordsArray[i].jobType ? "<div class='jobtype'>" + recordsArray[i].jobType + "</div>" : ""}
+                    ${recordsArray[i].visibleRate ? (recordsArray[i].salaryFrom && recordsArray[i].salaryTo ? "<div class='salary'>" + recordsArray[i].salaryFrom + " - " + recordsArray[i].salaryTo + "</div>" : "") : ""}
+                    ${recordsArray[i].remote ? "<div class='remote'>zdalna</div>" : ""}
+                    ${recordsArray[i].relocation ? "<div class='relocation'>relocation</div>" : ""}
                     <div class="employmentform">${formaZatrudnienia}</div>
                     </div>
                 </div>
@@ -444,10 +356,7 @@ const createFilteredRecordsArray = () => {
     // selectedBranches ////////////////
     let selectedBranches = [];
 
-    if (
-        Object.keys(filterConfigData).length !== 0 &&
-        filterConfigData.branche_filter.length
-    ) {
+    if (Object.keys(filterConfigData).length !== 0 && filterConfigData.branche_filter.length) {
         selectedBranches = filterConfigData.branche_filter;
     } else {
         selectedBranches = Array.from(branchesChildrenLoc)
@@ -544,10 +453,7 @@ const createFilteredRecordsArray = () => {
     // selectedLangs ////////////////
     let selectedLangs = [];
 
-    if (
-        Object.keys(filterConfigData).length !== 0 &&
-        filterConfigData.language_filter.length
-    ) {
+    if (Object.keys(filterConfigData).length !== 0 && filterConfigData.language_filter.length) {
         selectedLangs = filterConfigData.language_filter;
     } else {
         selectedLangs = Array.from(langChildrenLoc)
@@ -584,10 +490,7 @@ const createFilteredRecordsArray = () => {
     let selectedCountry = [];
     let filteredRecordsArray_5 = [];
 
-    if (
-        Object.keys(filterConfigData).length !== 0 &&
-        filterConfigData.location_country_filter.length
-    ) {
+    if (Object.keys(filterConfigData).length !== 0 && filterConfigData.location_country_filter.length) {
         selectedCountry = filterConfigData.location_country_filter;
         filteredRecordsArray_4.forEach((el) => {
             let addFlag = false;
@@ -612,10 +515,7 @@ const createFilteredRecordsArray = () => {
 
     let selectedCity = [];
 
-    if (
-        Object.keys(filterConfigData).length !== 0 &&
-        filterConfigData.location_city_filter.length
-    ) {
+    if (Object.keys(filterConfigData).length !== 0 && filterConfigData.location_city_filter.length) {
         selectedCity = filterConfigData.location_city_filter;
         cityLoc.style.display = "none";
     } else {
@@ -634,10 +534,7 @@ const createFilteredRecordsArray = () => {
 
     let filteredRecordsArray_7 = [];
 
-    if (
-        Object.keys(filterConfigData).length !== 0 &&
-        filterConfigData.location_distance !== null
-    ) {
+    if (Object.keys(filterConfigData).length !== 0 && filterConfigData.location_distance !== null) {
         distanceLoc.style.display = "none";
     }
 
@@ -656,33 +553,19 @@ const createFilteredRecordsArray = () => {
                 if (el_city === el_record.city) {
                     lati = el_record.lati;
                     longi = el_record.longi;
-                    if (
-                        Object.keys(filterConfigData).length !== 0 &&
-                        filterConfigData.location_distance !== null
-                    ) {
+                    if (Object.keys(filterConfigData).length !== 0 && filterConfigData.location_distance !== null) {
                         selectedDistance = filterConfigData.location_distance;
                         distanceLoc.style.display = "none";
                     }
                     min_lati = lati - selectedDistance * 0.009044;
                     max_lati = lati + selectedDistance * 0.009044;
-                    min_longi =
-                        longi -
-                        (selectedDistance * 0.0089831) /
-                            Math.cos((lati * Math.PI) / 180);
-                    max_longi =
-                        longi +
-                        (selectedDistance * 0.0089831) /
-                            Math.cos((lati * Math.PI) / 180);
+                    min_longi = longi - (selectedDistance * 0.0089831) / Math.cos((lati * Math.PI) / 180);
+                    max_longi = longi + (selectedDistance * 0.0089831) / Math.cos((lati * Math.PI) / 180);
                 }
             });
 
             filteredRecordsArray_6.forEach((el_record) => {
-                if (
-                    el_record.lati <= max_lati &&
-                    el_record.lati >= min_lati &&
-                    el_record.longi <= max_longi &&
-                    el_record.longi >= min_longi
-                ) {
+                if (el_record.lati <= max_lati && el_record.lati >= min_lati && el_record.longi <= max_longi && el_record.longi >= min_longi) {
                     filteredRecordsArray_7.push(el_record);
                 }
             });
@@ -744,9 +627,7 @@ const createFilteredRecordsArray = () => {
 
             el.description.forEach(function (elem) {
                 if (elem.value && elem.field_id !== "geolocation") {
-                    position = elem.value
-                        .toLowerCase()
-                        .search(searchText.toLowerCase());
+                    position = elem.value.toLowerCase().search(searchText.toLowerCase());
                     if (position !== -1) {
                         addFlag = true;
                     }
@@ -772,10 +653,7 @@ const createFilteredRecordsArray = () => {
 
     let selectedRecruitmentType = [];
 
-    if (
-        Object.keys(filterConfigData).length !== 0 &&
-        filterConfigData.recruitmentType_filter.length
-    ) {
+    if (Object.keys(filterConfigData).length !== 0 && filterConfigData.recruitmentType_filter.length) {
         selectedRecruitmentType = filterConfigData.recruitmentType_filter;
         filteredRecordsArray_10.forEach((el) => {
             let addFlag = false;
@@ -974,25 +852,18 @@ const changePage = (pageBtn) => {
         el.classList.remove("active");
     });
     pageBtn.classList.add("active");
-    let firstRecord =
-        recordsOnPage * parseInt(pageBtn.innerText) - recordsOnPage;
+    let firstRecord = recordsOnPage * parseInt(pageBtn.innerText) - recordsOnPage;
     let lastRecord = recordsOnPage * parseInt(pageBtn.innerText);
 
-    filtersON
-        ? createRecordBoxes(filteredRecordsArray_11, firstRecord, lastRecord)
-        : createRecordBoxes(allRecordsArray, firstRecord, lastRecord);
+    filtersON ? createRecordBoxes(filteredRecordsArray_11, firstRecord, lastRecord) : createRecordBoxes(allRecordsArray, firstRecord, lastRecord);
     globActivePageNo = parseInt(pageBtn.innerText);
 };
 
 let globActivePageNo;
 
 const movePrevPagesBtns = () => {
-    let firstDispalyedPageNo = parseInt(
-        Array.from(document.querySelectorAll(".page")).shift().innerText
-    );
-    let lastDispalyedPageNo = parseInt(
-        Array.from(document.querySelectorAll(".page")).pop().innerText
-    );
+    let firstDispalyedPageNo = parseInt(Array.from(document.querySelectorAll(".page")).shift().innerText);
+    let lastDispalyedPageNo = parseInt(Array.from(document.querySelectorAll(".page")).pop().innerText);
 
     let activePageNo;
     activePageNo = document.querySelector(".page.active");
@@ -1004,57 +875,35 @@ const movePrevPagesBtns = () => {
     if (firstDispalyedPageNo > 1) {
         pagesSwitchLoc.replaceChildren();
 
-        for (
-            let n = firstDispalyedPageNo - 1;
-            n <= lastDispalyedPageNo - 1;
-            n++
-        ) {
+        for (let n = firstDispalyedPageNo - 1; n <= lastDispalyedPageNo - 1; n++) {
             if (!activePageNo) {
                 activePageNo = globActivePageNo;
             }
             if (activePageNo && n === activePageNo) {
-                pagesSwitchLoc.insertAdjacentHTML(
-                    "beforeend",
-                    `<div class="page active">${n}</div>`
-                );
+                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page active">${n}</div>`);
             } else {
-                pagesSwitchLoc.insertAdjacentHTML(
-                    "beforeend",
-                    `<div class="page">${n}</div>`
-                );
+                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page">${n}</div>`);
             }
         }
 
         if (lastDispalyedPageNo < pagesQuantityCalc + 1) {
-            pagesSwitchLoc.insertAdjacentHTML(
-                "beforeend",
-                `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`
-            );
+            pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`);
             let nextBtnLoc = document.querySelector(".next");
             nextBtnLoc.addEventListener("click", () => {
                 moveNextPagesBtns();
             });
         } else {
-            pagesSwitchLoc.insertAdjacentHTML(
-                "beforeend",
-                `<div class="next"><img src="" alt="" /></div>`
-            );
+            pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next"><img src="" alt="" /></div>`);
         }
 
         if (firstDispalyedPageNo > 2) {
-            pagesSwitchLoc.insertAdjacentHTML(
-                "afterbegin",
-                `<div class="prev active"><img src="./img/chevron-left.svg" alt="" /></div>`
-            );
+            pagesSwitchLoc.insertAdjacentHTML("afterbegin", `<div class="prev active"><img src="./img/chevron-left.svg" alt="" /></div>`);
             let prevBtnLoc = document.querySelector(".prev");
             prevBtnLoc.addEventListener("click", () => {
                 movePrevPagesBtns();
             });
         } else {
-            pagesSwitchLoc.insertAdjacentHTML(
-                "afterbegin",
-                `<div class="prev"><img src="" alt="" /></div>`
-            );
+            pagesSwitchLoc.insertAdjacentHTML("afterbegin", `<div class="prev"><img src="" alt="" /></div>`);
         }
 
         pageButtonsLoc = document.querySelectorAll(".page");
@@ -1067,12 +916,8 @@ const movePrevPagesBtns = () => {
 };
 
 const moveNextPagesBtns = () => {
-    let firstDispalyedPageNo = parseInt(
-        Array.from(document.querySelectorAll(".page")).shift().innerText
-    );
-    let lastDispalyedPageNo = parseInt(
-        Array.from(document.querySelectorAll(".page")).pop().innerText
-    );
+    let firstDispalyedPageNo = parseInt(Array.from(document.querySelectorAll(".page")).shift().innerText);
+    let lastDispalyedPageNo = parseInt(Array.from(document.querySelectorAll(".page")).pop().innerText);
 
     let activePageNo;
     activePageNo = document.querySelector(".page.active");
@@ -1084,57 +929,35 @@ const moveNextPagesBtns = () => {
     if (lastDispalyedPageNo < pagesQuantityCalc) {
         pagesSwitchLoc.replaceChildren();
 
-        for (
-            let n = firstDispalyedPageNo + 1;
-            n <= lastDispalyedPageNo + 1;
-            n++
-        ) {
+        for (let n = firstDispalyedPageNo + 1; n <= lastDispalyedPageNo + 1; n++) {
             if (!activePageNo) {
                 activePageNo = globActivePageNo;
             }
             if (activePageNo && n === activePageNo) {
-                pagesSwitchLoc.insertAdjacentHTML(
-                    "beforeend",
-                    `<div class="page active">${n}</div>`
-                );
+                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page active">${n}</div>`);
             } else {
-                pagesSwitchLoc.insertAdjacentHTML(
-                    "beforeend",
-                    `<div class="page">${n}</div>`
-                );
+                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page">${n}</div>`);
             }
         }
 
         if (lastDispalyedPageNo < pagesQuantityCalc - 1) {
-            pagesSwitchLoc.insertAdjacentHTML(
-                "beforeend",
-                `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`
-            );
+            pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`);
             let nextBtnLoc = document.querySelector(".next");
             nextBtnLoc.addEventListener("click", () => {
                 moveNextPagesBtns();
             });
         } else {
-            pagesSwitchLoc.insertAdjacentHTML(
-                "beforeend",
-                `<div class="next"><img src="" alt="" /></div>`
-            );
+            pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next"><img src="" alt="" /></div>`);
         }
 
         if (firstDispalyedPageNo > 0) {
-            pagesSwitchLoc.insertAdjacentHTML(
-                "afterbegin",
-                `<div class="prev active"><img src="./img/chevron-left.svg" alt="" /></div>`
-            );
+            pagesSwitchLoc.insertAdjacentHTML("afterbegin", `<div class="prev active"><img src="./img/chevron-left.svg" alt="" /></div>`);
             let prevBtnLoc = document.querySelector(".prev");
             prevBtnLoc.addEventListener("click", () => {
                 movePrevPagesBtns();
             });
         } else {
-            pagesSwitchLoc.insertAdjacentHTML(
-                "afterbegin",
-                `<div class="prev"><img src="" alt="" /></div>`
-            );
+            pagesSwitchLoc.insertAdjacentHTML("afterbegin", `<div class="prev"><img src="" alt="" /></div>`);
         }
 
         pageButtonsLoc = document.querySelectorAll(".page");
@@ -1148,23 +971,11 @@ const moveNextPagesBtns = () => {
 
 // RWD /////////////////////////////////////////////////////////////
 function getWidth() {
-    return Math.max(
-        document.body.scrollWidth,
-        document.documentElement.scrollWidth,
-        document.body.offsetWidth,
-        document.documentElement.offsetWidth,
-        document.documentElement.clientWidth
-    );
+    return Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.offsetWidth, document.documentElement.clientWidth);
 }
 
 function getHeight() {
-    return Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.offsetHeight,
-        document.documentElement.clientHeight
-    );
+    return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.documentElement.clientHeight);
 }
 
 let pagesQuantityCalc;
@@ -1177,21 +988,12 @@ const setPages = (recordsNumber) => {
 
         for (let n = 1; n <= maxPageBtns; n++) {
             if (n === 1) {
-                pagesSwitchLoc.insertAdjacentHTML(
-                    "beforeend",
-                    `<div class="page active">${n}</div>`
-                );
+                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page active">${n}</div>`);
             } else {
-                pagesSwitchLoc.insertAdjacentHTML(
-                    "beforeend",
-                    `<div class="page">${n}</div>`
-                );
+                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page">${n}</div>`);
             }
         }
-        pagesSwitchLoc.insertAdjacentHTML(
-            "beforeend",
-            `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`
-        );
+        pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`);
         let nextBtnLoc = document.querySelector(".next");
         nextBtnLoc.addEventListener("click", () => {
             moveNextPagesBtns();
@@ -1201,28 +1003,16 @@ const setPages = (recordsNumber) => {
 
         for (let n = 1; n <= pagesQuantityCalc; n++) {
             if (n === 1) {
-                pagesSwitchLoc.insertAdjacentHTML(
-                    "beforeend",
-                    `<div class="page active">${n}</div>`
-                );
+                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page active">${n}</div>`);
             } else {
-                pagesSwitchLoc.insertAdjacentHTML(
-                    "beforeend",
-                    `<div class="page">${n}</div>`
-                );
+                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page">${n}</div>`);
             }
         }
 
-        pagesSwitchLoc.insertAdjacentHTML(
-            "beforeend",
-            `<div class="next"><img src="" alt="" /></div>`
-        );
+        pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next"><img src="" alt="" /></div>`);
     }
 
-    pagesSwitchLoc.insertAdjacentHTML(
-        "afterbegin",
-        `<div class="prev"><img src="" alt="" /></div>`
-    );
+    pagesSwitchLoc.insertAdjacentHTML("afterbegin", `<div class="prev"><img src="" alt="" /></div>`);
 
     pageButtonsLoc = document.querySelectorAll(".page");
     pageButtonsLoc.forEach((el) => {
@@ -1295,43 +1085,23 @@ const createAwardedRecordBoxes = (recordsArray, filterConfigData) => {
             }
 
             if (filterConfigData.language_filter.length > 0) {
-                filterAwarded(
-                    filterConfigData.language_filter,
-                    awardedRecordsArray,
-                    "lang"
-                );
+                filterAwarded(filterConfigData.language_filter, awardedRecordsArray, "lang");
             }
 
             if (filterConfigData.branche_filter.length > 0) {
-                filterAwarded(
-                    filterConfigData.branche_filter,
-                    awardedRecordsArray,
-                    "branche"
-                );
+                filterAwarded(filterConfigData.branche_filter, awardedRecordsArray, "branche");
             }
 
             if (filterConfigData.location_country_filter.length > 0) {
-                filterAwarded(
-                    filterConfigData.location_country_filter,
-                    awardedRecordsArray,
-                    "country"
-                );
+                filterAwarded(filterConfigData.location_country_filter, awardedRecordsArray, "country");
             }
 
             if (filterConfigData.location_city_filter.length > 0) {
-                filterAwarded(
-                    filterConfigData.location_city_filter,
-                    awardedRecordsArray,
-                    "city"
-                );
+                filterAwarded(filterConfigData.location_city_filter, awardedRecordsArray, "city");
             }
 
             if (filterConfigData.recruitmentType_filter.length > 0) {
-                filterAwarded(
-                    filterConfigData.recruitmentType_filter,
-                    awardedRecordsArray,
-                    "recruitmentType"
-                );
+                filterAwarded(filterConfigData.recruitmentType_filter, awardedRecordsArray, "recruitmentType");
             }
         }
 
@@ -1357,69 +1127,33 @@ const createAwardedRecordBoxes = (recordsArray, filterConfigData) => {
 
                 if (awardedRecordsArray[i].jobForm) {
                     awardedRecordsArray[i].jobForm.forEach(function (elem) {
-                        formaZatrudnienia =
-                            formaZatrudnienia + "<p>" + elem + "</p>";
+                        formaZatrudnienia = formaZatrudnienia + "<p>" + elem + "</p>";
                     });
                 }
 
                 awardedResultsLoc.insertAdjacentHTML(
                     "beforeend",
-                    `<a href="${
-                        awardedRecordsArray[i].url
-                    }" target="_blank"><div class="result ${borderColorClass}">
+                    `<a href="${awardedRecordsArray[i].url}" target="_blank"><div class="result ${borderColorClass}">
                 <div class="top">
                 
                         <div class="lang">
                             <p>${awardedRecordsArray[i].lang}</p>
                         </div>
                         <div class="branche-name">
-                            <div class="branche">${
-                                awardedRecordsArray[i].branche
-                                    ? awardedRecordsArray[i].branche
-                                    : ""
-                            }</div>
-                            <div class="name ${textColorClass}">${
-                        awardedRecordsArray[i].name
-                    }</div>
+                            <div class="branche">${awardedRecordsArray[i].branche ? awardedRecordsArray[i].branche : ""}</div>
+                            <div class="name ${textColorClass}">${awardedRecordsArray[i].name}</div>
                         </div>
                     
                 </div>
 
                 <div class="bottom">
                     <div class="city-container">
-                        <div class="city"><img src="./img/location_dot.svg">${
-                            awardedRecordsArray[i].city
-                        }</div></div>
+                        <div class="city"><img src="./img/location_dot.svg">${awardedRecordsArray[i].city}</div></div>
                         <div class="details-container">
-                        ${
-                            awardedRecordsArray[i].remote
-                                ? "<div class='remote'>zdalna</div>"
-                                : ""
-                        }
-                        ${
-                            awardedRecordsArray[i].relocation
-                                ? "<div class='relocation'>relocation</div>"
-                                : ""
-                        }
-                        ${
-                            awardedRecordsArray[i].jobType
-                                ? "<div class='jobtype'>" +
-                                  awardedRecordsArray[i].jobType +
-                                  "</div>"
-                                : ""
-                        }
-                        ${
-                            awardedRecordsArray[i].visibleRate
-                                ? awardedRecordsArray[i].salaryFrom &&
-                                  awardedRecordsArray[i].salaryTo
-                                    ? "<div class='salary'>" +
-                                      awardedRecordsArray[i].salaryFrom +
-                                      " - " +
-                                      awardedRecordsArray[i].salaryTo +
-                                      "</div>"
-                                    : ""
-                                : ""
-                        }
+                        ${awardedRecordsArray[i].remote ? "<div class='remote'>zdalna</div>" : ""}
+                        ${awardedRecordsArray[i].relocation ? "<div class='relocation'>relocation</div>" : ""}
+                        ${awardedRecordsArray[i].jobType ? "<div class='jobtype'>" + awardedRecordsArray[i].jobType + "</div>" : ""}
+                        ${awardedRecordsArray[i].visibleRate ? (awardedRecordsArray[i].salaryFrom && awardedRecordsArray[i].salaryTo ? "<div class='salary'>" + awardedRecordsArray[i].salaryFrom + " - " + awardedRecordsArray[i].salaryTo + "</div>" : "") : ""}
                         <div class="employmentform">${formaZatrudnienia}</div>
                         </div>
                     
@@ -1454,26 +1188,11 @@ const summariseDownload = (recordsNumber) => {
 };
 
 // create FILTER DATA from API data ///////////////////////////////////////////////
-const createDataForFilters = (
-    branche,
-    jobForm,
-    jobType,
-    lang,
-    visibleRate,
-    salaryFrom,
-    salaryTo,
-    country,
-    city,
-    lati,
-    longi
-) => {
+const createDataForFilters = (branche, jobForm, jobType, lang, visibleRate, salaryFrom, salaryTo, country, city, lati, longi) => {
     // BranchesList
 
     if (filterBranchesList.indexOf(branche) === -1 && branche !== undefined) {
-        if (
-            Object.keys(filterConfigData).length !== 0 &&
-            filterConfigData.branche_filter.length
-        ) {
+        if (Object.keys(filterConfigData).length !== 0 && filterConfigData.branche_filter.length) {
             if (filterConfigData.branche_filter.indexOf(branche) !== -1) {
                 filterBranchesList.push(branche);
             }
@@ -1529,9 +1248,7 @@ const createDataForFilters = (
                 });
             }
         } else if (filterConfigData.location_country_filter.length) {
-            if (
-                filterConfigData.location_country_filter.indexOf(country) !== -1
-            ) {
+            if (filterConfigData.location_country_filter.indexOf(country) !== -1) {
                 filterCountriesList[country].push({
                     city: city,
                     lati: lati,
@@ -1539,11 +1256,7 @@ const createDataForFilters = (
                 });
             }
         } else {
-            if (
-                filterCountriesList[country].findIndex(
-                    (arr_el) => arr_el.city === city
-                ) === -1
-            ) {
+            if (filterCountriesList[country].findIndex((arr_el) => arr_el.city === city) === -1) {
                 filterCountriesList[country].push({
                     city: city,
                     lati: lati,
@@ -1555,11 +1268,7 @@ const createDataForFilters = (
         if (!filterCountriesList[country]) {
             filterCountriesList[country] = [];
         }
-        if (
-            filterCountriesList[country].findIndex(
-                (arr_el) => arr_el.city === city
-            ) === -1
-        ) {
+        if (filterCountriesList[country].findIndex((arr_el) => arr_el.city === city) === -1) {
             filterCountriesList[country].push({
                 city: city,
                 lati: lati,
@@ -1598,54 +1307,36 @@ const reworkData = (rawAPIArray) => {
             awarded: el.awarded,
         });
 
-        createDataForFilters(
-            el.options.branches,
-            el.options._forma_zatrudnienia,
-            el.options.job_type,
-            el.advert.language,
-            parseInt(el.options._Widoczna_stawka),
-            parseInt(el.options._spodziewane_wynagrodzenie_od),
-            parseInt(el.options._spodziewane_wynagrodzenie_do),
-            parsedJobLocation.country,
-            parsedJobLocation.locality,
-            parseFloat(parsedJobLocation.latitude),
-            parseFloat(parsedJobLocation.longitude)
-        );
+        createDataForFilters(el.options.branches, el.options._forma_zatrudnienia, el.options.job_type, el.advert.language, parseInt(el.options._Widoczna_stawka), parseInt(el.options._spodziewane_wynagrodzenie_od), parseInt(el.options._spodziewane_wynagrodzenie_do), parsedJobLocation.country, parsedJobLocation.locality, parseFloat(parsedJobLocation.latitude), parseFloat(parsedJobLocation.longitude));
     });
 };
 
 // gets DATA FROM API ///////////////////////////////////////////////
 const getAPI = (apiPage) => {
-    const response = fetch(
-        "https://grupaprogres.traffit.com/public/job_posts/published",
-        {
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-                "X-Request-Page-Size": "100",
-                "X-Request-Current-Page": apiPage,
-                "X-Request-Sort": '{"sort_by": "id", "direction": "ASC"}',
-            },
-        }
-    );
+    const response = fetch("https://grupaprogres.traffit.com/public/job_posts/published", {
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+            "X-Request-Page-Size": "100",
+            "X-Request-Current-Page": apiPage,
+            "X-Request-Sort": '{"sort_by": "id", "direction": "ASC"}',
+        },
+    });
 
     return response;
 };
 
 // gets DATA FROM API 2 ///////////////////////////////////////////////
 const getAPI_2 = (apiPage) => {
-    const response = fetch(
-        "https://rsgrupaprogres.traffit.com/public/job_posts/published",
-        {
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-                "X-Request-Page-Size": "100",
-                "X-Request-Current-Page": apiPage,
-                "X-Request-Sort": '{"sort_by": "id", "direction": "ASC"}',
-            },
-        }
-    );
+    const response = fetch("https://rsgrupaprogres.traffit.com/public/job_posts/published", {
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+            "X-Request-Page-Size": "100",
+            "X-Request-Current-Page": apiPage,
+            "X-Request-Sort": '{"sort_by": "id", "direction": "ASC"}',
+        },
+    });
 
     return response;
 };
@@ -1714,9 +1405,7 @@ readConfigFilter();
 recordsOnPageLoc.addEventListener("change", (e) => {
     recordsOnPage = parseInt(e.target.value);
 
-    filtersON
-        ? createRecordBoxes(filteredRecordsArray_11, 0, recordsOnPage)
-        : createRecordBoxes(allRecordsArray, 0, recordsOnPage);
+    filtersON ? createRecordBoxes(filteredRecordsArray_11, 0, recordsOnPage) : createRecordBoxes(allRecordsArray, 0, recordsOnPage);
     setPages(recordsNumber);
 
     // setParentIframeHeight();

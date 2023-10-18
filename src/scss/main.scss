@@ -384,7 +384,7 @@ main {
                             &.expand {
                                 max-height: 400px;
                                 overflow-y: auto;
-                                animation: 0.3s delay-overflow;
+                                // animation: 0.3s delay-overflow;
                             }
 
                             &::-webkit-scrollbar {
@@ -1235,12 +1235,12 @@ main {
     }
 }
 
-@keyframes delay-overflow {
-    from {
-        overflow-y: hidden;
-    }
+// @keyframes delay-overflow {
+//     from {
+//         overflow-y: hidden;
+//     }
 
-    to {
-        overflow-y: auto;
-    }
-}
+//     to {
+//         overflow-y: auto;
+//     }
+// }
