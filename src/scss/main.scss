@@ -388,22 +388,22 @@ main {
                                 animation: .3s delay-overflow;
                             }
 
-                            // &::-webkit-scrollbar {
-                            //     width: 6px;
-                            // }
+                            &::-webkit-scrollbar {
+                                width: 6px;
+                            }
 
-                            // &::-webkit-scrollbar-track {
-                            //     border-radius: 3px;
-                            // }
+                            &::-webkit-scrollbar-track {
+                                border-radius: 3px;
+                            }
 
-                            // &::-webkit-scrollbar-thumb {
-                            //     background: $scroll-color;
-                            //     border-radius: 3px;
-                            // }
+                            &::-webkit-scrollbar-thumb {
+                                background: $scroll-color;
+                                border-radius: 3px;
+                            }
 
-                            // &::-webkit-scrollbar-thumb:hover {
-                            //     background: $scroll-color-hover;
-                            // }
+                            &::-webkit-scrollbar-thumb:hover {
+                                background: $scroll-color-hover;
+                            }
 
                             ul {
                                 list-style-type: none;

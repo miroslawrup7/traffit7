@@ -302,7 +302,7 @@ const createRecordBoxes = (recordsArray, firstRecordNumber, recordsOnPage) => {
             let formaZatrudnienia = "";
 
             if (recordsArray[i].jobForm) {
-                recordsArray[i].jobForm.forEach(function (elem) {
+                recordsArray[i].jobForm.forEach((elem) => {
                     formaZatrudnienia = formaZatrudnienia + "<p>" + elem + "</p>";
                 });
             }
@@ -360,10 +360,10 @@ const createFilteredRecordsArray = () => {
         selectedBranches = filterConfigData.branche_filter;
     } else {
         selectedBranches = Array.from(branchesChildrenLoc)
-            .filter(function (elem) {
+            .filter((elem) => {
                 return elem.checked;
             })
-            .map(function (elem) {
+            .map((elem) => {
                 return elem.value;
             });
     }
@@ -392,10 +392,10 @@ const createFilteredRecordsArray = () => {
     let selectedJobForms = [];
 
     selectedJobForms = Array.from(jobFormChildrenLoc)
-        .filter(function (elem) {
+        .filter((elem) => {
             return elem.checked;
         })
-        .map(function (elem) {
+        .map((elem) => {
             return elem.value;
         });
 
@@ -423,10 +423,10 @@ const createFilteredRecordsArray = () => {
 
     // selectedJobTypes ////////////////
     let selectedjobTypes = Array.from(jobTypeChildrenLoc)
-        .filter(function (elem) {
+        .filter((elem) => {
             return elem.checked;
         })
-        .map(function (elem) {
+        .map((elem) => {
             return elem.value;
         });
 
@@ -457,10 +457,10 @@ const createFilteredRecordsArray = () => {
         selectedLangs = filterConfigData.language_filter;
     } else {
         selectedLangs = Array.from(langChildrenLoc)
-            .filter(function (elem) {
+            .filter((elem) => {
                 return elem.checked;
             })
-            .map(function (elem) {
+            .map((elem) => {
                 return elem.value;
             });
     }
@@ -520,12 +520,12 @@ const createFilteredRecordsArray = () => {
         cityLoc.style.display = "none";
     } else {
         selectedCity = Array.from(citiesChildrenLoc)
-            .filter(function (elem) {
+            .filter((elem) => {
                 if (elem.value) {
                     return elem.checked;
                 }
             })
-            .map(function (elem) {
+            .map((elem) => {
                 if (elem.value) {
                     return elem.value;
                 }
@@ -625,7 +625,7 @@ const createFilteredRecordsArray = () => {
 
             let position;
 
-            el.description.forEach(function (elem) {
+            el.description.forEach((elem) => {
                 if (elem.value && elem.field_id !== "geolocation") {
                     position = elem.value.toLowerCase().search(searchText.toLowerCase());
                     if (position !== -1) {
@@ -716,11 +716,11 @@ const createFilterLists = (filterConfigData) => {
     }
 
     if (filterBranchesList.length > 0) {
-        filterBranchesList.sort(function (a, b) {
+        filterBranchesList.sort((a, b) => {
             return a.localeCompare(b);
         });
 
-        filterBranchesList.forEach(function (el) {
+        filterBranchesList.forEach((el) => {
             branchesLoc.insertAdjacentHTML(
                 "beforeend",
                 `<li>
@@ -737,11 +737,11 @@ const createFilterLists = (filterConfigData) => {
     }
 
     if (filterJobFormList.length > 0) {
-        filterJobFormList.sort(function (a, b) {
+        filterJobFormList.sort((a, b) => {
             return a.localeCompare(b);
         });
 
-        filterJobFormList.forEach(function (el) {
+        filterJobFormList.forEach((el) => {
             jobFormLoc.insertAdjacentHTML(
                 "beforeend",
                 `<li>
@@ -758,11 +758,11 @@ const createFilterLists = (filterConfigData) => {
     }
 
     if (filterJobTypeList.length > 0) {
-        filterJobTypeList.sort(function (a, b) {
+        filterJobTypeList.sort((a, b) => {
             return a.localeCompare(b);
         });
 
-        filterJobTypeList.forEach(function (el) {
+        filterJobTypeList.forEach((el) => {
             jobTypeLoc.insertAdjacentHTML(
                 "beforeend",
                 `<li>
@@ -779,11 +779,11 @@ const createFilterLists = (filterConfigData) => {
     }
 
     if (filterLangList.length > 0) {
-        filterLangList.sort(function (a, b) {
+        filterLangList.sort((a, b) => {
             return a.localeCompare(b);
         });
 
-        filterLangList.forEach(function (el) {
+        filterLangList.forEach((el) => {
             langLoc.insertAdjacentHTML(
                 "beforeend",
                 `<li>
@@ -825,11 +825,11 @@ const createFilterLists = (filterConfigData) => {
             allCitiesArray.push(el.city);
         });
 
-        allCitiesArray.sort(function (a, b) {
+        allCitiesArray.sort((a, b) => {
             return a.localeCompare(b);
         });
 
-        allCitiesArray.forEach(function (el) {
+        allCitiesArray.forEach((el) => {
             citiesLoc.insertAdjacentHTML(
                 "beforeend",
                 `<li>
@@ -970,13 +970,13 @@ const moveNextPagesBtns = () => {
 };
 
 // RWD /////////////////////////////////////////////////////////////
-function getWidth() {
+const getWidth = () => {
     return Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.offsetWidth, document.documentElement.clientWidth);
-}
+};
 
-function getHeight() {
+const getHeight = () => {
     return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.documentElement.clientHeight);
-}
+};
 
 let pagesQuantityCalc;
 
@@ -1126,7 +1126,7 @@ const createAwardedRecordBoxes = (recordsArray, filterConfigData) => {
                 let formaZatrudnienia = "";
 
                 if (awardedRecordsArray[i].jobForm) {
-                    awardedRecordsArray[i].jobForm.forEach(function (elem) {
+                    awardedRecordsArray[i].jobForm.forEach((elem) => {
                         formaZatrudnienia = formaZatrudnienia + "<p>" + elem + "</p>";
                     });
                 }
