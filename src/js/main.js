@@ -1,9 +1,9 @@
-"use strict";
+"use strict"
 
 const jobLoc = document.querySelector(".job");
 const jobLabelLoc = document.querySelector(".job label");
 const jobInputLoc = document.querySelector(".job input");
-const jobClearBtnLoc = jobLoc.querySelector(".clear-btn");
+const jobClearBtnLoc = jobLoc.querySelector(".clear-btn")
 
 const cityLoc = document.querySelector(".city");
 const cityListBtnLoc = document.querySelector(".city .arrow-down");
@@ -48,8 +48,8 @@ let pageButtonsLoc = document.querySelectorAll(".page");
 
 const brancheWrapperLoc = document.querySelector(".sector");
 const branchesLoc = document.querySelector(".sector ul");
-const jobFormLoc = document.querySelector(".employment-form ul");
-const jobTypeLoc = document.querySelector(".working-hours ul");
+const jobFormLoc = document.querySelector(".employment-form ul"); 
+const jobTypeLoc = document.querySelector(".working-hours ul"); 
 const langLoc = document.querySelector(".language ul");
 const citiesLoc = document.querySelector(".city ul");
 const resultsLoc = document.querySelector(".results");
@@ -74,7 +74,7 @@ jobLoc.addEventListener("click", (e) => {
     jobInputLoc.classList.add("active");
     jobClearBtnLoc.style.opacity = "0.5";
     jobClearBtnLoc.style.display = "flex";
-});
+})
 
 jobInputLoc.addEventListener("blur", (event) => {
     if (!event.target.value) {
@@ -83,49 +83,49 @@ jobInputLoc.addEventListener("blur", (event) => {
         jobClearBtnLoc.style.opacity = "0";
         jobClearBtnLoc.style.display = "none";
     }
-});
+})
 
 jobClearBtnLoc.addEventListener("click", (e) => {
-    e.stopPropagation();
+    e.stopPropagation()
     jobInputLoc.value = "";
     jobLabelLoc.classList.remove("mini");
     jobInputLoc.classList.remove("active");
     jobClearBtnLoc.style.opacity = "0";
     jobClearBtnLoc.style.display = "none";
     searchBtn.click();
-});
+})
 
 const removePaddingBottomToFilterList = (filterList) => {
     filterList.closest(".element").style.paddingBottom = "";
     filterList.closest(".element").style.boxShadow = "";
-};
+}
 
 const addPaddingBottomToFilterList = (filterList) => {
-    if (filterList.closest(".element").style.paddingBottom === "") {
+    if (filterList.closest(".element").style.paddingBottom === "" ) {
         filterList.closest(".element").style.paddingBottom = "15px";
         filterList.closest(".element").style.boxShadow = "0px 0px 3px rgba(0,0,0,0.1)";
     } else {
         removePaddingBottomToFilterList(filterList);
     }
-};
+}
 
-const dropDownListArray = [cityLoc, distanceLoc, sectorLoc, employmentFormLoc, workingHoursLoc, languageLoc];
+const dropDownListArray = [cityLoc, distanceLoc, sectorLoc, employmentFormLoc, workingHoursLoc, languageLoc]
 
 dropDownListArray.forEach((elem) => {
     elem.querySelector(".list-title").addEventListener("click", () => {
         elem.querySelector(".list").classList.toggle("expand");
-        // elem.querySelector(".arrow-down").classList.toggle("rotate180");
-        // addPaddingBottomToFilterList(elem.querySelector(".list-title"));
-    });
-});
+        elem.querySelector(".arrow-down").classList.toggle("rotate180");
+        addPaddingBottomToFilterList(elem.querySelector(".list-title"));
+    })
+})
 
 dropDownListArray.forEach((elem) => {
     elem.addEventListener("mouseleave", () => {
         elem.querySelector(".list").classList.remove("expand");
-        // elem.querySelector(".arrow-down").classList.remove("rotate180");
-        // removePaddingBottomToFilterList(elem.querySelector(".list-title"));
-    });
-});
+        elem.querySelector(".arrow-down").classList.remove("rotate180");
+        removePaddingBottomToFilterList(elem.querySelector(".list-title"));
+    })
+})
 
 let filterConfigData = {};
 let apiPage = 1;
@@ -141,7 +141,7 @@ let filterJobTypeList = [];
 let filterLangList = [];
 let filterCountriesList = {};
 let filteredRecordsArray_11;
-let apiNumber;
+let apiNumber
 
 // change distance label after choose
 distanceInputsLoc.forEach((elem) => {
@@ -149,71 +149,72 @@ distanceInputsLoc.forEach((elem) => {
         distanceTitleLoc.innerText = `+${Number(elem.value)} km`;
         distanceTitleLoc.dataset.distance = Number(elem.value);
         searchBtn.click();
-    });
-});
+    })
+})
 
 recordsOnPageLoc.value = recordsOnPage;
 
 const filterListLocArray = [cityLoc, sectorLoc, employmentFormLoc, workingHoursLoc, languageLoc];
-let selectedOptionsInFilterArray = [[], [], [], [], [], []];
+let selectedOptionsInFilterArray = [[],[],[],[],[],[]];
 
 const setClearBtn = () => {
     filterListLocArray.forEach((elem, index) => {
-        // selectedOptionsInFilterArray.push([]);
 
+        // selectedOptionsInFilterArray.push([]);
+    
         const clearBtn = elem.querySelector(".clear-btn");
         const filtersQuantityBtn = elem.querySelector(".filters-quantity");
         const filtersSelectedOptions = elem.querySelector(".selected-options");
         const filtersListTitle = elem.querySelector(".list-title");
-
+    
         clearBtn.addEventListener("mouseenter", () => {
             if (selectedOptionsInFilterArray[index].length !== 0) {
                 filtersQuantityBtn.style.opacity = "0";
                 clearBtn.style.opacity = "1";
             }
         });
-
+        
         clearBtn.addEventListener("mouseleave", () => {
             if (selectedOptionsInFilterArray[index].length !== 0) {
                 filtersQuantityBtn.style.opacity = "1";
                 clearBtn.style.opacity = "0";
             }
         });
-
+    
         clearBtn.addEventListener("click", () => {
             if (selectedOptionsInFilterArray[index].length !== 0) {
                 selectedOptionsInFilterArray[index] = [];
                 clearBtn.style.opacity = "0";
                 elem.querySelectorAll("input").forEach((el) => {
                     el.checked = false;
-                });
+                })
                 filtersSelectedOptions.innerText = "";
                 filtersListTitle.classList.remove("mini");
                 filtersQuantityBtn.style.opacity = "0";
                 searchBtn.click();
             }
         });
-    });
-};
+    })
+}
 
-setClearBtn();
+setClearBtn()
 
 const actionAfterFilterInputChange = (e) => {
     const filterParentLoc = e.target.closest(".drop-down-container");
     const filtersQuantityBtn = filterParentLoc.querySelector(".filters-quantity");
     const filtersListTitleLoc = filterParentLoc.querySelector(".list-title");
     const filtersSelectedOptionsLoc = filterParentLoc.querySelector(".selected-options");
-
+   
     const indexFilter = filterListLocArray.indexOf(filterParentLoc);
 
     if (e.target.checked) {
         selectedOptionsInFilterArray[indexFilter].push(e.target.value);
     } else {
         const indexDeletedItem = selectedOptionsInFilterArray[indexFilter].indexOf(e.target.value);
-        selectedOptionsInFilterArray[indexFilter].splice(indexDeletedItem, 1);
+        selectedOptionsInFilterArray[indexFilter].splice(indexDeletedItem,1);
     }
 
-    selectedOptionsInFilterArray[indexFilter];
+    selectedOptionsInFilterArray[indexFilter]
 
     if (selectedOptionsInFilterArray[indexFilter].length !== 0) {
         filtersListTitleLoc.classList.add("mini");
@@ -226,28 +227,30 @@ const actionAfterFilterInputChange = (e) => {
 
     filtersSelectedOptionsLoc.innerText = selectedOptionsInFilterArray[indexFilter].join(", ");
     searchBtn.click();
-};
+}
 
 const addListenerToFilterListsElements = () => {
+    
     document.querySelectorAll(".city ul input").forEach((elem) => {
         elem.addEventListener("change", actionAfterFilterInputChange);
-    });
-
+    })
+    
     document.querySelectorAll(".sector ul input").forEach((elem) => {
         elem.addEventListener("change", actionAfterFilterInputChange);
-    });
+    })
 
     document.querySelectorAll(".employment-form ul input").forEach((elem) => {
         elem.addEventListener("change", actionAfterFilterInputChange);
-    });
+    })
 
     document.querySelectorAll(".working-hours ul input").forEach((elem) => {
         elem.addEventListener("change", actionAfterFilterInputChange);
-    });
+    })
 
     document.querySelectorAll(".language ul input").forEach((elem) => {
         elem.addEventListener("change", actionAfterFilterInputChange);
-    });
+    })
+
 };
 
 // create RECORDS BOXES ///////////////////////////////////////////////
@@ -262,6 +265,7 @@ const createRecordBoxes = (recordsArray, firstRecordNumber, recordsOnPage) => {
             let textColorClass = "";
 
             if (Object.keys(filterConfigData).length !== 0) {
+
                 if (!filterConfigData.recruitmentType_colorOnly.length) {
                     if (recordsArray[i].recruitmentType === "PT") {
                         borderColorClass = "pt-border";
@@ -309,13 +313,21 @@ const createRecordBoxes = (recordsArray, firstRecordNumber, recordsOnPage) => {
 
             resultsLoc.insertAdjacentHTML(
                 "beforeend",
-                `<a href="${recordsArray[i].url}" target="_blank"><div class="result ${borderColorClass}">
+                `<a href="${
+                    recordsArray[i].url
+                }" target="_blank"><div class="result ${borderColorClass}">
             <div class="top">
               
                     <div class="lang"><p>${recordsArray[i].lang}</p></div>
                     <div class="branche-name">
-                        <div class="branche">${recordsArray[i].branche ? recordsArray[i].branche : ""}</div>
-                        <div class="name ${textColorClass}">${recordsArray[i].name}</div>
+                        <div class="branche">${
+                            recordsArray[i].branche
+                                ? recordsArray[i].branche
+                                : ""
+                        }</div>
+                        <div class="name ${textColorClass}">${
+                    recordsArray[i].name
+                }</div>
                    
                 </div>
               
@@ -323,13 +335,40 @@ const createRecordBoxes = (recordsArray, firstRecordNumber, recordsOnPage) => {
 
             <div class="bottom">
                 <div class="city-container">
-                    <div class="city"><img src="./img/location_dot.svg">${recordsArray[i].city}</div>
+                    <div class="city"><img src="./img/location_dot.svg">${
+                        recordsArray[i].city
+                    }</div>
                     </div>
                     <div class="details-container">
-                    ${recordsArray[i].jobType ? "<div class='jobtype'>" + recordsArray[i].jobType + "</div>" : ""}
-                    ${recordsArray[i].visibleRate ? (recordsArray[i].salaryFrom && recordsArray[i].salaryTo ? "<div class='salary'>" + recordsArray[i].salaryFrom + " - " + recordsArray[i].salaryTo + "</div>" : "") : ""}
-                    ${recordsArray[i].remote ? "<div class='remote'>zdalna</div>" : ""}
-                    ${recordsArray[i].relocation ? "<div class='relocation'>relocation</div>" : ""}
+                    ${
+                        recordsArray[i].jobType
+                            ? "<div class='jobtype'>" +
+                              recordsArray[i].jobType +
+                              "</div>"
+                            : ""
+                    }
+                    ${
+                        recordsArray[i].visibleRate
+                            ? recordsArray[i].salaryFrom &&
+                              recordsArray[i].salaryTo
+                                ? "<div class='salary'>" +
+                                  recordsArray[i].salaryFrom +
+                                  " - " +
+                                  recordsArray[i].salaryTo +
+                                  "</div>"
+                                : ""
+                            : ""
+                    }
+                    ${
+                        recordsArray[i].remote
+                            ? "<div class='remote'>zdalna</div>"
+                            : ""
+                    }
+                    ${
+                        recordsArray[i].relocation
+                            ? "<div class='relocation'>relocation</div>"
+                            : ""
+                    }
                     <div class="employmentform">${formaZatrudnienia}</div>
                     </div>
                 </div>
@@ -345,6 +384,7 @@ const createRecordBoxes = (recordsArray, firstRecordNumber, recordsOnPage) => {
 
 // filter the data to create FILTERED OBJECTS ARRAY ///////////////////////////////
 const createFilteredRecordsArray = () => {
+
     const branchesChildrenLoc = branchesLoc.querySelectorAll("li input");
     const jobFormChildrenLoc = jobFormLoc.querySelectorAll("li input");
     const jobTypeChildrenLoc = jobTypeLoc.querySelectorAll("li input");
@@ -367,7 +407,7 @@ const createFilteredRecordsArray = () => {
                 return elem.value;
             });
     }
-
+    
     let filteredRecordsArray_1 = [];
 
     if (selectedBranches.length !== 0) {
@@ -454,17 +494,17 @@ const createFilteredRecordsArray = () => {
     let selectedLangs = [];
 
     if (Object.keys(filterConfigData).length !== 0 && filterConfigData.language_filter.length) {
-        selectedLangs = filterConfigData.language_filter;
+        selectedLangs = filterConfigData.language_filter
     } else {
         selectedLangs = Array.from(langChildrenLoc)
             .filter(function (elem) {
-                return elem.checked;
+                return elem.checked
             })
             .map(function (elem) {
-                return elem.value;
+                return elem.value
             });
-    }
-
+    } 
+    
     let filteredRecordsArray_4 = [];
 
     if (selectedLangs.length !== 0) {
@@ -482,203 +522,213 @@ const createFilteredRecordsArray = () => {
             }
         });
     } else {
-        filteredRecordsArray_4 = filteredRecordsArray_3;
+        filteredRecordsArray_4 = filteredRecordsArray_3
     }
 
     // selectedCountry ////////////////
 
-    let selectedCountry = [];
-    let filteredRecordsArray_5 = [];
+    let selectedCountry = []
+    let filteredRecordsArray_5 = []
 
     if (Object.keys(filterConfigData).length !== 0 && filterConfigData.location_country_filter.length) {
-        selectedCountry = filterConfigData.location_country_filter;
+        selectedCountry = filterConfigData.location_country_filter
         filteredRecordsArray_4.forEach((el) => {
-            let addFlag = false;
+            let addFlag = false
 
             selectedCountry.forEach((selectedFiltr) => {
                 if (el.country === selectedFiltr) {
-                    addFlag = true;
+                    addFlag = true
                 }
-            });
+            })
 
             if (addFlag) {
-                filteredRecordsArray_5.push(el);
+                filteredRecordsArray_5.push(el)
             }
-        });
+        })
     } else {
-        filteredRecordsArray_5 = filteredRecordsArray_4;
+        filteredRecordsArray_5 = filteredRecordsArray_4
     }
 
-    let filteredRecordsArray_6 = filteredRecordsArray_5;
+    let filteredRecordsArray_6 = filteredRecordsArray_5
 
     // selectedCity & selectedDistance ////////////////
 
     let selectedCity = [];
 
     if (Object.keys(filterConfigData).length !== 0 && filterConfigData.location_city_filter.length) {
-        selectedCity = filterConfigData.location_city_filter;
-        cityLoc.style.display = "none";
+        selectedCity = filterConfigData.location_city_filter
+        cityLoc.style.display = "none"
     } else {
         selectedCity = Array.from(citiesChildrenLoc)
-            .filter(function (elem) {
-                if (elem.value) {
-                    return elem.checked;
-                }
-            })
-            .map(function (elem) {
-                if (elem.value) {
-                    return elem.value;
-                }
-            });
+        .filter(function (elem) {
+            if (elem.value) {
+                return elem.checked
+            }
+        })
+        .map(function (elem) {
+            if (elem.value) {
+                return elem.value
+            }
+        })
     }
-
-    let filteredRecordsArray_7 = [];
+    
+    let filteredRecordsArray_7 = []
 
     if (Object.keys(filterConfigData).length !== 0 && filterConfigData.location_distance !== null) {
-        distanceLoc.style.display = "none";
+        distanceLoc.style.display = "none"
     }
 
     if (selectedCity.length) {
-        let selectedDistance = parseInt(distanceTitleLoc.dataset.distance);
+        
+        let selectedDistance = parseInt(distanceTitleLoc.dataset.distance)
 
-        let lati;
-        let longi;
-        let min_lati;
-        let max_lati;
-        let min_longi;
-        let max_longi;
+        let lati
+        let longi
+        let min_lati
+        let max_lati
+        let min_longi
+        let max_longi
 
         selectedCity.forEach((el_city) => {
             filteredRecordsArray_6.forEach((el_record) => {
                 if (el_city === el_record.city) {
-                    lati = el_record.lati;
-                    longi = el_record.longi;
+                    lati = el_record.lati
+                    longi = el_record.longi
                     if (Object.keys(filterConfigData).length !== 0 && filterConfigData.location_distance !== null) {
-                        selectedDistance = filterConfigData.location_distance;
-                        distanceLoc.style.display = "none";
+                        selectedDistance = filterConfigData.location_distance
+                        distanceLoc.style.display = "none"
                     }
-                    min_lati = lati - selectedDistance * 0.009044;
-                    max_lati = lati + selectedDistance * 0.009044;
-                    min_longi = longi - (selectedDistance * 0.0089831) / Math.cos((lati * Math.PI) / 180);
-                    max_longi = longi + (selectedDistance * 0.0089831) / Math.cos((lati * Math.PI) / 180);
+                    min_lati = lati - selectedDistance * 0.009044
+                    max_lati = lati + selectedDistance * 0.009044
+                    min_longi = longi - (selectedDistance * 0.0089831) / Math.cos((lati * Math.PI) / 180)
+                    max_longi = longi + (selectedDistance * 0.0089831) / Math.cos((lati * Math.PI) / 180)
                 }
-            });
+            })
 
             filteredRecordsArray_6.forEach((el_record) => {
-                if (el_record.lati <= max_lati && el_record.lati >= min_lati && el_record.longi <= max_longi && el_record.longi >= min_longi) {
-                    filteredRecordsArray_7.push(el_record);
+                if (
+                    el_record.lati <= max_lati &&
+                    el_record.lati >= min_lati &&
+                    el_record.longi <= max_longi &&
+                    el_record.longi >= min_longi
+                ) {
+                    filteredRecordsArray_7.push(el_record)
                 }
-            });
-        });
+            })
+        })
+        
     } else {
-        filteredRecordsArray_7 = filteredRecordsArray_6;
+        filteredRecordsArray_7 = filteredRecordsArray_6
     }
-
+   
     // selectedRemote ////////////////
 
     let filteredRecordsArray_8 = [];
 
-    if (remoteInputLoc.checked || filterConfigData.remote_filter) {
-        filteredRecordsArray_7.forEach((el) => {
-            let addFlag = false;
+        if (remoteInputLoc.checked || filterConfigData.remote_filter) {
+            filteredRecordsArray_7.forEach((el) => {
+                let addFlag = false
 
-            if (el.remote) {
-                addFlag = true;
-            }
+                if (el.remote) {
+                    addFlag = true
+                }
 
-            if (addFlag) {
-                filteredRecordsArray_8.push(el);
-            }
-        });
-    } else {
-        filteredRecordsArray_8 = filteredRecordsArray_7;
-    }
+                if (addFlag) {
+                    filteredRecordsArray_8.push(el)
+                }
+            })
+        
+        } else {
+            filteredRecordsArray_8 = filteredRecordsArray_7
+        }
 
     // selectedRelocation ////////////////
-    let filteredRecordsArray_9 = [];
+    let filteredRecordsArray_9 = []
 
     if (relocationInputLoc.checked) {
         filteredRecordsArray_8.forEach((el) => {
-            let addFlag = false;
+            let addFlag = false
 
             if (el.relocation) {
-                addFlag = true;
+                addFlag = true
             }
 
             if (addFlag) {
-                filteredRecordsArray_9.push(el);
+                filteredRecordsArray_9.push(el)
             }
-        });
+        })
     } else {
-        filteredRecordsArray_9 = filteredRecordsArray_8;
+        filteredRecordsArray_9 = filteredRecordsArray_8
     }
 
     // searchText ////////////////
 
-    let filteredRecordsArray_10 = [];
+    let filteredRecordsArray_10 = []
 
-    let searchText = searchInputLoc.value;
+    let searchText = searchInputLoc.value
 
     if (searchText) {
         filteredRecordsArray_9.forEach((el) => {
-            let addFlag = false;
+            let addFlag = false
 
-            let position;
+            let position
 
             el.description.forEach(function (elem) {
                 if (elem.value && elem.field_id !== "geolocation") {
-                    position = elem.value.toLowerCase().search(searchText.toLowerCase());
+                    position = elem.value
+                        .toLowerCase()
+                        .search(searchText.toLowerCase());
                     if (position !== -1) {
-                        addFlag = true;
+                        addFlag = true
                     }
                 }
-            });
+            })
 
-            position = el.name.toLowerCase().search(searchText.toLowerCase());
+            position = el.name.toLowerCase().search(searchText.toLowerCase())
             if (position !== -1) {
-                addFlag = true;
+                addFlag = true
             }
 
             if (addFlag) {
-                filteredRecordsArray_10.push(el);
+                filteredRecordsArray_10.push(el)
             }
-        });
+        })
     } else {
-        filteredRecordsArray_10 = filteredRecordsArray_9;
+        filteredRecordsArray_10 = filteredRecordsArray_9
     }
 
     // selectedRecruitmentType (coloring of records) ////////////////
 
-    filteredRecordsArray_11 = [];
-
-    let selectedRecruitmentType = [];
+    filteredRecordsArray_11 = []
+    
+    let selectedRecruitmentType = []
 
     if (Object.keys(filterConfigData).length !== 0 && filterConfigData.recruitmentType_filter.length) {
-        selectedRecruitmentType = filterConfigData.recruitmentType_filter;
+        selectedRecruitmentType = filterConfigData.recruitmentType_filter
         filteredRecordsArray_10.forEach((el) => {
-            let addFlag = false;
+            let addFlag = false
 
             selectedRecruitmentType.forEach((selectedFiltr) => {
                 if (el.recruitmentType === selectedFiltr) {
-                    addFlag = true;
+                    addFlag = true
                 }
-            });
+            })
 
             if (addFlag) {
-                filteredRecordsArray_11.push(el);
+                filteredRecordsArray_11.push(el)
             }
-        });
-    } else {
-        filteredRecordsArray_11 = filteredRecordsArray_10;
+        })
+    }  else {
+        filteredRecordsArray_11 = filteredRecordsArray_10
     }
 
-    recordsNumber = filteredRecordsArray_11.length;
+    recordsNumber = filteredRecordsArray_11.length
 
-    createRecordBoxes(filteredRecordsArray_11, 0, recordsOnPage);
-
-    setPages(recordsNumber);
-    filtersON = true;
-};
+    createRecordBoxes(filteredRecordsArray_11, 0, recordsOnPage)
+  
+    setPages(recordsNumber)
+    filtersON = true
+}
 
 const pagesContainerStart = () => {
     pagesContainer.classList.add("active");
@@ -692,34 +742,36 @@ const dropDownBtnStart = () => {
 
 // create HTML FILTERS LISTS //////////////////////////////////////////////////////
 const createFilterLists = (filterConfigData) => {
+
     if (filterConfigData) {
         if (!filterConfigData.relocation_visible) {
             relocationLoc.classList.add("unactive");
         }
-
+    
         if (!filterConfigData.language_visible) {
             languageLoc.classList.add("unactive");
         }
-
+    
         if (!filterConfigData.remote_visible) {
             remoteLoc.classList.add("unactive");
         }
-
+    
         if (!filterConfigData.location_visible) {
             cityLoc.classList.add("unactive");
             distanceLoc.classList.add("unactive");
         }
-
+    
         if (!filterConfigData.branche_visible) {
             sectorLoc.classList.add("unactive");
         }
     }
+    
 
     if (filterBranchesList.length > 0) {
         filterBranchesList.sort(function (a, b) {
             return a.localeCompare(b);
         });
-
+        
         filterBranchesList.forEach(function (el) {
             branchesLoc.insertAdjacentHTML(
                 "beforeend",
@@ -799,7 +851,9 @@ const createFilterLists = (filterConfigData) => {
         });
     }
 
+
     if (Object.keys(filterCountriesList).length > 0) {
+
         function compare(a, b) {
             return a.city.localeCompare(b.city);
         }
@@ -852,18 +906,25 @@ const changePage = (pageBtn) => {
         el.classList.remove("active");
     });
     pageBtn.classList.add("active");
-    let firstRecord = recordsOnPage * parseInt(pageBtn.innerText) - recordsOnPage;
+    let firstRecord =
+        recordsOnPage * parseInt(pageBtn.innerText) - recordsOnPage;
     let lastRecord = recordsOnPage * parseInt(pageBtn.innerText);
 
-    filtersON ? createRecordBoxes(filteredRecordsArray_11, firstRecord, lastRecord) : createRecordBoxes(allRecordsArray, firstRecord, lastRecord);
+    filtersON
+        ? createRecordBoxes(filteredRecordsArray_11, firstRecord, lastRecord)
+        : createRecordBoxes(allRecordsArray, firstRecord, lastRecord);
     globActivePageNo = parseInt(pageBtn.innerText);
 };
 
 let globActivePageNo;
 
 const movePrevPagesBtns = () => {
-    let firstDispalyedPageNo = parseInt(Array.from(document.querySelectorAll(".page")).shift().innerText);
-    let lastDispalyedPageNo = parseInt(Array.from(document.querySelectorAll(".page")).pop().innerText);
+    let firstDispalyedPageNo = parseInt(
+        Array.from(document.querySelectorAll(".page")).shift().innerText
+    );
+    let lastDispalyedPageNo = parseInt(
+        Array.from(document.querySelectorAll(".page")).pop().innerText
+    );
 
     let activePageNo;
     activePageNo = document.querySelector(".page.active");
@@ -880,30 +941,48 @@ const movePrevPagesBtns = () => {
                 activePageNo = globActivePageNo;
             }
             if (activePageNo && n === activePageNo) {
-                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page active">${n}</div>`);
+                pagesSwitchLoc.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="page active">${n}</div>`
+                );
             } else {
-                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page">${n}</div>`);
+                pagesSwitchLoc.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="page">${n}</div>`
+                );
             }
         }
 
         if (lastDispalyedPageNo < pagesQuantityCalc + 1) {
-            pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`);
+            pagesSwitchLoc.insertAdjacentHTML(
+                "beforeend",
+                `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`
+            );
             let nextBtnLoc = document.querySelector(".next");
             nextBtnLoc.addEventListener("click", () => {
                 moveNextPagesBtns();
             });
         } else {
-            pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next"><img src="" alt="" /></div>`);
+            pagesSwitchLoc.insertAdjacentHTML(
+                "beforeend",
+                `<div class="next"><img src="" alt="" /></div>`
+            );
         }
 
         if (firstDispalyedPageNo > 2) {
-            pagesSwitchLoc.insertAdjacentHTML("afterbegin", `<div class="prev active"><img src="./img/chevron-left.svg" alt="" /></div>`);
+            pagesSwitchLoc.insertAdjacentHTML(
+                "afterbegin",
+                `<div class="prev active"><img src="./img/chevron-left.svg" alt="" /></div>`
+            );
             let prevBtnLoc = document.querySelector(".prev");
             prevBtnLoc.addEventListener("click", () => {
                 movePrevPagesBtns();
             });
         } else {
-            pagesSwitchLoc.insertAdjacentHTML("afterbegin", `<div class="prev"><img src="" alt="" /></div>`);
+            pagesSwitchLoc.insertAdjacentHTML(
+                "afterbegin",
+                `<div class="prev"><img src="" alt="" /></div>`
+            );
         }
 
         pageButtonsLoc = document.querySelectorAll(".page");
@@ -916,8 +995,12 @@ const movePrevPagesBtns = () => {
 };
 
 const moveNextPagesBtns = () => {
-    let firstDispalyedPageNo = parseInt(Array.from(document.querySelectorAll(".page")).shift().innerText);
-    let lastDispalyedPageNo = parseInt(Array.from(document.querySelectorAll(".page")).pop().innerText);
+    let firstDispalyedPageNo = parseInt(
+        Array.from(document.querySelectorAll(".page")).shift().innerText
+    );
+    let lastDispalyedPageNo = parseInt(
+        Array.from(document.querySelectorAll(".page")).pop().innerText
+    );
 
     let activePageNo;
     activePageNo = document.querySelector(".page.active");
@@ -934,30 +1017,48 @@ const moveNextPagesBtns = () => {
                 activePageNo = globActivePageNo;
             }
             if (activePageNo && n === activePageNo) {
-                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page active">${n}</div>`);
+                pagesSwitchLoc.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="page active">${n}</div>`
+                );
             } else {
-                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page">${n}</div>`);
+                pagesSwitchLoc.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="page">${n}</div>`
+                );
             }
         }
 
         if (lastDispalyedPageNo < pagesQuantityCalc - 1) {
-            pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`);
+            pagesSwitchLoc.insertAdjacentHTML(
+                "beforeend",
+                `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`
+            );
             let nextBtnLoc = document.querySelector(".next");
             nextBtnLoc.addEventListener("click", () => {
                 moveNextPagesBtns();
             });
         } else {
-            pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next"><img src="" alt="" /></div>`);
+            pagesSwitchLoc.insertAdjacentHTML(
+                "beforeend",
+                `<div class="next"><img src="" alt="" /></div>`
+            );
         }
 
         if (firstDispalyedPageNo > 0) {
-            pagesSwitchLoc.insertAdjacentHTML("afterbegin", `<div class="prev active"><img src="./img/chevron-left.svg" alt="" /></div>`);
+            pagesSwitchLoc.insertAdjacentHTML(
+                "afterbegin",
+                `<div class="prev active"><img src="./img/chevron-left.svg" alt="" /></div>`
+            );
             let prevBtnLoc = document.querySelector(".prev");
             prevBtnLoc.addEventListener("click", () => {
                 movePrevPagesBtns();
             });
         } else {
-            pagesSwitchLoc.insertAdjacentHTML("afterbegin", `<div class="prev"><img src="" alt="" /></div>`);
+            pagesSwitchLoc.insertAdjacentHTML(
+                "afterbegin",
+                `<div class="prev"><img src="" alt="" /></div>`
+            );
         }
 
         pageButtonsLoc = document.querySelectorAll(".page");
@@ -971,11 +1072,23 @@ const moveNextPagesBtns = () => {
 
 // RWD /////////////////////////////////////////////////////////////
 function getWidth() {
-    return Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.offsetWidth, document.documentElement.clientWidth);
+    return Math.max(
+        document.body.scrollWidth,
+        document.documentElement.scrollWidth,
+        document.body.offsetWidth,
+        document.documentElement.offsetWidth,
+        document.documentElement.clientWidth
+    );
 }
 
 function getHeight() {
-    return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.documentElement.clientHeight);
+    return Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        document.documentElement.clientHeight
+    );
 }
 
 let pagesQuantityCalc;
@@ -988,12 +1101,21 @@ const setPages = (recordsNumber) => {
 
         for (let n = 1; n <= maxPageBtns; n++) {
             if (n === 1) {
-                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page active">${n}</div>`);
+                pagesSwitchLoc.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="page active">${n}</div>`
+                );
             } else {
-                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page">${n}</div>`);
+                pagesSwitchLoc.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="page">${n}</div>`
+                );
             }
         }
-        pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`);
+        pagesSwitchLoc.insertAdjacentHTML(
+            "beforeend",
+            `<div class="next active"><img src="./img/chevron-right.svg" alt="" /></div>`
+        );
         let nextBtnLoc = document.querySelector(".next");
         nextBtnLoc.addEventListener("click", () => {
             moveNextPagesBtns();
@@ -1003,16 +1125,28 @@ const setPages = (recordsNumber) => {
 
         for (let n = 1; n <= pagesQuantityCalc; n++) {
             if (n === 1) {
-                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page active">${n}</div>`);
+                pagesSwitchLoc.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="page active">${n}</div>`
+                );
             } else {
-                pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="page">${n}</div>`);
+                pagesSwitchLoc.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="page">${n}</div>`
+                );
             }
         }
 
-        pagesSwitchLoc.insertAdjacentHTML("beforeend", `<div class="next"><img src="" alt="" /></div>`);
+        pagesSwitchLoc.insertAdjacentHTML(
+            "beforeend",
+            `<div class="next"><img src="" alt="" /></div>`
+        );
     }
 
-    pagesSwitchLoc.insertAdjacentHTML("afterbegin", `<div class="prev"><img src="" alt="" /></div>`);
+    pagesSwitchLoc.insertAdjacentHTML(
+        "afterbegin",
+        `<div class="prev"><img src="" alt="" /></div>`
+    );
 
     pageButtonsLoc = document.querySelectorAll(".page");
     pageButtonsLoc.forEach((el) => {
@@ -1025,6 +1159,7 @@ const setPages = (recordsNumber) => {
 let maxPageBtns;
 
 const setPagesBtnQuantity = () => {
+   
     if (getWidth() < 500) {
         maxPageBtns = 3;
     }
@@ -1045,7 +1180,8 @@ const setPagesBtnQuantity = () => {
     }
 
     setPages(recordsNumber);
-};
+
+}
 
 window.addEventListener("resize", () => {
     setPagesBtnQuantity();
@@ -1054,36 +1190,42 @@ window.addEventListener("resize", () => {
 setPagesBtnQuantity();
 
 const filterAwarded = (configFilterArray, awardedRecordsArray, property) => {
-    for (let i = awardedRecordsArray.length - 1; i >= 0; i--) {
+    
+    for (let i = awardedRecordsArray.length-1; i>=0; i--) {
+
         let findFlag = false;
-        configFilterArray.forEach((element) => {
+        configFilterArray.forEach((element)=>{
+          
             if (awardedRecordsArray[i][property] === element) {
                 findFlag = true;
             }
-        });
+        })
 
         if (!findFlag) {
-            awardedRecordsArray.splice(i, 1);
+            awardedRecordsArray.splice(i, 1)
         }
     }
-};
+}
 
 // create AWARDED RECORDS BOXES ///////////////////////////////////////////////
 const createAwardedRecordBoxes = (recordsArray, filterConfigData) => {
+
     awardedResultsLoc.replaceChildren();
 
     let awardedRecordsArray = recordsArray.filter((elem) => {
-        return elem.awarded;
+        return elem.awarded;  
     });
 
     if (awardedRecordsArray.length > 0) {
+
         if (filterConfigData) {
+
             if (filterConfigData.remote_filter) {
                 awardedRecordsArray = awardedRecordsArray.filter((elem) => {
                     return elem.remote;
                 });
             }
-
+            
             if (filterConfigData.language_filter.length > 0) {
                 filterAwarded(filterConfigData.language_filter, awardedRecordsArray, "lang");
             }
@@ -1103,6 +1245,7 @@ const createAwardedRecordBoxes = (recordsArray, filterConfigData) => {
             if (filterConfigData.recruitmentType_filter.length > 0) {
                 filterAwarded(filterConfigData.recruitmentType_filter, awardedRecordsArray, "recruitmentType");
             }
+
         }
 
         for (let i = firstRecordNumber; i < 10; i++) {
@@ -1127,33 +1270,69 @@ const createAwardedRecordBoxes = (recordsArray, filterConfigData) => {
 
                 if (awardedRecordsArray[i].jobForm) {
                     awardedRecordsArray[i].jobForm.forEach(function (elem) {
-                        formaZatrudnienia = formaZatrudnienia + "<p>" + elem + "</p>";
+                        formaZatrudnienia =
+                            formaZatrudnienia + "<p>" + elem + "</p>";
                     });
                 }
 
                 awardedResultsLoc.insertAdjacentHTML(
                     "beforeend",
-                    `<a href="${awardedRecordsArray[i].url}" target="_blank"><div class="result ${borderColorClass}">
+                    `<a href="${
+                        awardedRecordsArray[i].url
+                    }" target="_blank"><div class="result ${borderColorClass}">
                 <div class="top">
                 
                         <div class="lang">
                             <p>${awardedRecordsArray[i].lang}</p>
                         </div>
                         <div class="branche-name">
-                            <div class="branche">${awardedRecordsArray[i].branche ? awardedRecordsArray[i].branche : ""}</div>
-                            <div class="name ${textColorClass}">${awardedRecordsArray[i].name}</div>
+                            <div class="branche">${
+                                awardedRecordsArray[i].branche
+                                    ? awardedRecordsArray[i].branche
+                                    : ""
+                            }</div>
+                            <div class="name ${textColorClass}">${
+                        awardedRecordsArray[i].name
+                    }</div>
                         </div>
                     
                 </div>
 
                 <div class="bottom">
                     <div class="city-container">
-                        <div class="city"><img src="./img/location_dot.svg">${awardedRecordsArray[i].city}</div></div>
+                        <div class="city"><img src="./img/location_dot.svg">${
+                            awardedRecordsArray[i].city
+                        }</div></div>
                         <div class="details-container">
-                        ${awardedRecordsArray[i].remote ? "<div class='remote'>zdalna</div>" : ""}
-                        ${awardedRecordsArray[i].relocation ? "<div class='relocation'>relocation</div>" : ""}
-                        ${awardedRecordsArray[i].jobType ? "<div class='jobtype'>" + awardedRecordsArray[i].jobType + "</div>" : ""}
-                        ${awardedRecordsArray[i].visibleRate ? (awardedRecordsArray[i].salaryFrom && awardedRecordsArray[i].salaryTo ? "<div class='salary'>" + awardedRecordsArray[i].salaryFrom + " - " + awardedRecordsArray[i].salaryTo + "</div>" : "") : ""}
+                        ${
+                            awardedRecordsArray[i].remote
+                                ? "<div class='remote'>zdalna</div>"
+                                : ""
+                        }
+                        ${
+                            awardedRecordsArray[i].relocation
+                                ? "<div class='relocation'>relocation</div>"
+                                : ""
+                        }
+                        ${
+                            awardedRecordsArray[i].jobType
+                                ? "<div class='jobtype'>" +
+                                awardedRecordsArray[i].jobType +
+                                "</div>"
+                                : ""
+                        }
+                        ${
+                            awardedRecordsArray[i].visibleRate
+                                ? awardedRecordsArray[i].salaryFrom &&
+                                awardedRecordsArray[i].salaryTo
+                                    ? "<div class='salary'>" +
+                                    awardedRecordsArray[i].salaryFrom +
+                                    " - " +
+                                    awardedRecordsArray[i].salaryTo +
+                                    "</div>"
+                                    : ""
+                                : ""
+                        }
                         <div class="employmentform">${formaZatrudnienia}</div>
                         </div>
                     
@@ -1173,9 +1352,9 @@ const createAwardedRecordBoxes = (recordsArray, filterConfigData) => {
             }
         }
     } else {
-        awardedResultsLoc.style.margin = "0";
+        awardedResultsLoc.style.margin = "0"
     }
-};
+}
 
 // show RECORDS NUMBER ///////////////////////////////////////////////
 const summariseDownload = (recordsNumber) => {
@@ -1185,19 +1364,32 @@ const summariseDownload = (recordsNumber) => {
     } else {
         noResultsLoc.classList.remove("active");
     }
-};
+}
 
 // create FILTER DATA from API data ///////////////////////////////////////////////
-const createDataForFilters = (branche, jobForm, jobType, lang, visibleRate, salaryFrom, salaryTo, country, city, lati, longi) => {
-    // BranchesList
+const createDataForFilters = (
+    branche,
+    jobForm,
+    jobType,
+    lang,
+    visibleRate,
+    salaryFrom,
+    salaryTo,
+    country,
+    city,
+    lati,
+    longi
+) => {
 
+    // BranchesList
+   
     if (filterBranchesList.indexOf(branche) === -1 && branche !== undefined) {
         if (Object.keys(filterConfigData).length !== 0 && filterConfigData.branche_filter.length) {
             if (filterConfigData.branche_filter.indexOf(branche) !== -1) {
-                filterBranchesList.push(branche);
+                filterBranchesList.push(branche)
             }
         } else {
-            filterBranchesList.push(branche);
+            filterBranchesList.push(branche)
         }
     }
 
@@ -1206,15 +1398,15 @@ const createDataForFilters = (branche, jobForm, jobType, lang, visibleRate, sala
     if (jobForm) {
         jobForm.forEach((elem) => {
             if (filterJobFormList.indexOf(elem) === -1) {
-                filterJobFormList.push(elem);
+                filterJobFormList.push(elem)
             }
-        });
+        })
     }
 
     // JobTypeList
 
     if (filterJobTypeList.indexOf(jobType) === -1 && jobType !== undefined) {
-        filterJobTypeList.push(jobType);
+        filterJobTypeList.push(jobType)
     }
 
     // LangList
@@ -1223,13 +1415,13 @@ const createDataForFilters = (branche, jobForm, jobType, lang, visibleRate, sala
         if (Object.keys(filterConfigData).length !== 0) {
             if (filterConfigData.language_filter.length) {
                 if (filterConfigData.language_filter.indexOf(lang) !== -1) {
-                    filterLangList.push(lang);
+                    filterLangList.push(lang)
                 }
             } else {
-                filterLangList.push(lang);
+                filterLangList.push(lang)
             }
         } else {
-            filterLangList.push(lang);
+            filterLangList.push(lang)
         }
     }
 
@@ -1237,7 +1429,7 @@ const createDataForFilters = (branche, jobForm, jobType, lang, visibleRate, sala
 
     if (Object.keys(filterConfigData).length !== 0) {
         if (!filterCountriesList[country]) {
-            filterCountriesList[country] = [];
+            filterCountriesList[country] = []
         }
         if (filterConfigData.location_city_filter.length) {
             if (filterConfigData.location_city_filter.indexOf(city) !== -1) {
@@ -1266,7 +1458,7 @@ const createDataForFilters = (branche, jobForm, jobType, lang, visibleRate, sala
         }
     } else {
         if (!filterCountriesList[country]) {
-            filterCountriesList[country] = [];
+            filterCountriesList[country] = []
         }
         if (filterCountriesList[country].findIndex((arr_el) => arr_el.city === city) === -1) {
             filterCountriesList[country].push({
@@ -1276,11 +1468,12 @@ const createDataForFilters = (branche, jobForm, jobType, lang, visibleRate, sala
             });
         }
     }
-};
+}
 
 // create OBJECTS ARRAY from Raw API JSON ///////////////////////////////////////////////
 const reworkData = (rawAPIArray) => {
     rawAPIArray.forEach((el) => {
+
         let parsedJobLocation;
         if (el.options.job_location) {
             parsedJobLocation = JSON.parse(el.options.job_location);
@@ -1307,86 +1500,104 @@ const reworkData = (rawAPIArray) => {
             awarded: el.awarded,
         });
 
-        createDataForFilters(el.options.branches, el.options._forma_zatrudnienia, el.options.job_type, el.advert.language, parseInt(el.options._Widoczna_stawka), parseInt(el.options._spodziewane_wynagrodzenie_od), parseInt(el.options._spodziewane_wynagrodzenie_do), parsedJobLocation.country, parsedJobLocation.locality, parseFloat(parsedJobLocation.latitude), parseFloat(parsedJobLocation.longitude));
+        createDataForFilters(
+            el.options.branches,
+            el.options._forma_zatrudnienia,
+            el.options.job_type,
+            el.advert.language,
+            parseInt(el.options._Widoczna_stawka),
+            parseInt(el.options._spodziewane_wynagrodzenie_od),
+            parseInt(el.options._spodziewane_wynagrodzenie_do),
+            parsedJobLocation.country,
+            parsedJobLocation.locality,
+            parseFloat(parsedJobLocation.latitude),
+            parseFloat(parsedJobLocation.longitude)
+        );
     });
-};
+}
 
 // gets DATA FROM API ///////////////////////////////////////////////
 const getAPI = (apiPage) => {
-    const response = fetch("https://grupaprogres.traffit.com/public/job_posts/published", {
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json",
-            "X-Request-Page-Size": "100",
-            "X-Request-Current-Page": apiPage,
-            "X-Request-Sort": '{"sort_by": "id", "direction": "ASC"}',
-        },
-    });
+    const response = fetch(
+        "https://grupaprogres.traffit.com/public/job_posts/published",
+        {
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Request-Page-Size": "100",
+                "X-Request-Current-Page": apiPage,
+                "X-Request-Sort": '{"sort_by": "id", "direction": "ASC"}',
+            },
+        }
+    );
 
     return response;
-};
+}
 
 // gets DATA FROM API 2 ///////////////////////////////////////////////
 const getAPI_2 = (apiPage) => {
-    const response = fetch("https://rsgrupaprogres.traffit.com/public/job_posts/published", {
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json",
-            "X-Request-Page-Size": "100",
-            "X-Request-Current-Page": apiPage,
-            "X-Request-Sort": '{"sort_by": "id", "direction": "ASC"}',
-        },
-    });
+    const response = fetch(
+        "https://rsgrupaprogres.traffit.com/public/job_posts/published",
+        {
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Request-Page-Size": "100",
+                "X-Request-Current-Page": apiPage,
+                "X-Request-Sort": '{"sort_by": "id", "direction": "ASC"}',
+            },
+        }
+    );
 
     return response;
-};
+}
 
 const loopOnAPI = (jsonData, filterConfigData) => {
     if (jsonData.length > 0 && apiNumber === 1) {
-        rawAPIArray = rawAPIArray.concat(jsonData);
-        apiPage++;
-        createRecordsObjFromAPI(apiPage, filterConfigData);
-    } else if (jsonData.length === 0 && apiNumber === 1) {
-        apiPage = 1;
-        createRecordsObjFromAPI_2(apiPage, filterConfigData);
-    } else if (jsonData.length > 0 && apiNumber === 2) {
-        rawAPIArray = rawAPIArray.concat(jsonData);
-        apiPage++;
-        createRecordsObjFromAPI_2(apiPage, filterConfigData);
+        rawAPIArray = rawAPIArray.concat(jsonData)
+        apiPage++
+        createRecordsObjFromAPI(apiPage, filterConfigData)
+    } else if (jsonData.length === 0  && apiNumber === 1) {
+        apiPage = 1
+        createRecordsObjFromAPI_2(apiPage, filterConfigData)
+    } else if (jsonData.length > 0  && apiNumber === 2) {
+        rawAPIArray = rawAPIArray.concat(jsonData)
+        apiPage++
+        createRecordsObjFromAPI_2(apiPage, filterConfigData)
     } else {
-        reworkData(rawAPIArray);
-        recordsNumber = rawAPIArray.length;
-        createAwardedRecordBoxes(allRecordsArray, filterConfigData);
-        setPages(recordsNumber);
-        createFilterLists(filterConfigData);
-        addListenerToFilterListsElements();
-        createFilteredRecordsArray();
+        reworkData(rawAPIArray)
+        recordsNumber = rawAPIArray.length
+        createAwardedRecordBoxes(allRecordsArray, filterConfigData)
+        setPages(recordsNumber)
+        createFilterLists(filterConfigData)
+        addListenerToFilterListsElements()
+        createFilteredRecordsArray()
         distanceInputsLoc.forEach((elem) => {
-            elem.checked = false;
-        });
-        jobInputLoc.value = "";
+            elem.checked = false
+        })
+        jobInputLoc.value = ""
     }
-};
+}
 
 async function createRecordsObjFromAPI(apiPage, filterConfigData) {
-    apiNumber = 1;
-    const rawData = await getAPI(apiPage);
-    const jsonData = await rawData.json();
-    loopOnAPI(jsonData, filterConfigData);
+    apiNumber = 1
+    const rawData = await getAPI(apiPage)
+    const jsonData = await rawData.json()
+    loopOnAPI(jsonData, filterConfigData)
 }
 
 async function createRecordsObjFromAPI_2(apiPage, filterConfigData) {
-    apiNumber = 2;
-    const rawData = await getAPI_2(apiPage);
-    const jsonData = await rawData.json();
-    loopOnAPI(jsonData, filterConfigData);
+    apiNumber = 2
+    const rawData = await getAPI_2(apiPage)
+    const jsonData = await rawData.json()
+    loopOnAPI(jsonData, filterConfigData)
 }
 
 // consider configuration filters ////////////////////////
 const getConfigFilter = () => {
     const response = fetch("./config/config.json");
     return response;
-};
+}
 
 async function readConfigFilter() {
     try {
@@ -1405,11 +1616,13 @@ readConfigFilter();
 recordsOnPageLoc.addEventListener("change", (e) => {
     recordsOnPage = parseInt(e.target.value);
 
-    filtersON ? createRecordBoxes(filteredRecordsArray_11, 0, recordsOnPage) : createRecordBoxes(allRecordsArray, 0, recordsOnPage);
+    filtersON
+        ? createRecordBoxes(filteredRecordsArray_11, 0, recordsOnPage)
+        : createRecordBoxes(allRecordsArray, 0, recordsOnPage);
     setPages(recordsNumber);
 
     // setParentIframeHeight();
-});
+})
 
 // SEARCH LISTENER /////////////////////////////////////////////////////////////
 searchBtn.addEventListener("click", createFilteredRecordsArray);
@@ -1417,12 +1630,14 @@ searchBtn.addEventListener("click", createFilteredRecordsArray);
 advancedSearchBar.addEventListener("click", () => {
     advancedContainer.classList.toggle("showed");
     advancedSearchBtn.classList.toggle("rotate180");
-});
+})
 
-const clearAllFiltersLoc = document.querySelector(".clear-all-filters");
+const clearAllFiltersLoc = document.querySelector(".clear-all-filters")
 
 clearAllFiltersLoc.addEventListener("click", () => {
+
     filterListLocArray.forEach((elem, index) => {
+
         const clearBtn = elem.querySelector(".clear-btn");
         const filtersQuantityBtn = elem.querySelector(".filters-quantity");
         const filtersSelectedOptions = elem.querySelector(".selected-options");
@@ -1432,11 +1647,11 @@ clearAllFiltersLoc.addEventListener("click", () => {
         clearBtn.style.opacity = "0";
         elem.querySelectorAll("input").forEach((el) => {
             el.checked = false;
-        });
+        })
         filtersSelectedOptions.innerText = "";
         filtersListTitle.classList.remove("mini");
         filtersQuantityBtn.style.opacity = "0";
-    });
+    })
 
     jobInputLoc.value = "";
     jobLabelLoc.classList.remove("mini");
@@ -1446,15 +1661,15 @@ clearAllFiltersLoc.addEventListener("click", () => {
 
     distanceLoc.querySelectorAll("input").forEach((elem) => {
         elem.checked = false;
-    });
+    })
     distanceListTitleLoc.innerText = "+0 km";
     createFilteredRecordsArray();
 });
 
 jobInputLoc.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
-        event.preventDefault();
-        searchBtn.click();
+      event.preventDefault();
+      searchBtn.click();
     }
 });
 
@@ -1466,14 +1681,15 @@ jobInputLoc.addEventListener("blur", () => {
 
 jobInputLoc.addEventListener("input", () => {
     if (jobInputLoc.value === "") {
-        searchBtn.click();
+      searchBtn.click();
     }
 });
 
 remoteInputLoc.addEventListener("change", () => {
     searchBtn.click();
-});
+})
 
 relocationInputLoc.addEventListener("change", () => {
     searchBtn.click();
-});
+})
+
