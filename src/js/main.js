@@ -263,43 +263,40 @@ const createRecordBoxes = (recordsArray, firstRecordNumber, recordsOnPage) => {
         if (recordsArray[i]) {
             let borderColorClass = "";
             let textColorClass = "";
-
-            if (Object.keys(filterConfigData).length !== 0) {
-
-                if (!filterConfigData.recruitmentType_colorOnly.length) {
+            
+            if (Object.keys(filterConfigData).length !== 0 && filterConfigData.recruitmentType_colorOnly.length) {
+                if (filterConfigData.recruitmentType_colorOnly.indexOf("PT") !== -1) {
                     if (recordsArray[i].recruitmentType === "PT") {
                         borderColorClass = "pt-border";
                         textColorClass = "pt-text";
                     }
+                }
+
+                if (filterConfigData.recruitmentType_colorOnly.indexOf("RS") !== -1) {
                     if (recordsArray[i].recruitmentType === "RS") {
                         borderColorClass = "rs-border";
                         textColorClass = "rs-text";
                     }
+                }
+
+                if (filterConfigData.recruitmentType_colorOnly.indexOf("WEW") !== -1) {
                     if (recordsArray[i].recruitmentType === "WEW") {
                         borderColorClass = "wew-border";
                         textColorClass = "wew-text";
                     }
-                } else {
-                    if (filterConfigData.recruitmentType_colorOnly.indexOf("PT") !== -1) {
-                        if (recordsArray[i].recruitmentType === "PT") {
-                            borderColorClass = "pt-border";
-                            textColorClass = "pt-text";
-                        }
-                    }
-
-                    if (filterConfigData.recruitmentType_colorOnly.indexOf("RS") !== -1) {
-                        if (recordsArray[i].recruitmentType === "RS") {
-                            borderColorClass = "rs-border";
-                            textColorClass = "rs-text";
-                        }
-                    }
-
-                    if (filterConfigData.recruitmentType_colorOnly.indexOf("WEW") !== -1) {
-                        if (recordsArray[i].recruitmentType === "WEW") {
-                            borderColorClass = "wew-border";
-                            textColorClass = "wew-text";
-                        }
-                    }
+                }
+            } else {
+                if (recordsArray[i].recruitmentType === "PT") {
+                    borderColorClass = "pt-border";
+                    textColorClass = "pt-text";
+                }
+                if (recordsArray[i].recruitmentType === "RS") {
+                    borderColorClass = "rs-border";
+                    textColorClass = "rs-text";
+                }
+                if (recordsArray[i].recruitmentType === "WEW") {
+                    borderColorClass = "wew-border";
+                    textColorClass = "wew-text";
                 }
             }
 
